@@ -39,7 +39,7 @@ def importData(file) :
 
     return df
 
-def getDate(startDate, endDate) :
+def getDate(startDate, endDate,df) :
     a = df[df['date'] == endDate].index.tolist()[0]
     b = df[df['date'] == startDate].index.tolist()[0]
     return df.loc[a:b,]
