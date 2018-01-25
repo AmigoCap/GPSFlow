@@ -2,11 +2,6 @@
 from math import radians, cos, sin, asin, sqrt
 import data_parser as parser
 
-# Loading data
-file = "anonymous_2015.json"
-df = parser.importData(file)
-print(df)
-
 def haversine(lon1, lat1, lon2, lat2):
     """
     Calculate the great circle distance between two points
@@ -60,6 +55,3 @@ def getVitesse(file):
 
     return df
 
-final = getVitesse(getDistance(df))
-
-print(final)
