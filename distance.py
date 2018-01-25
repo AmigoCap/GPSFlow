@@ -1,4 +1,4 @@
-
+# coding utf8
 from math import radians, cos, sin, asin, sqrt
 import data_parser as parser
 
@@ -34,7 +34,7 @@ def getDistance(file):
     return df
 
 def velocity(dist, t1, t2):
-    #Vitesse en mètre par seconde
+    #Vitesse en metre par seconde
     v1 = (dist)/((float(t2)-float(t1))*pow(10, -3))
     #Vitesse en km/h
     v2 = v1*3.6

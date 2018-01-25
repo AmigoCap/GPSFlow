@@ -1,3 +1,4 @@
+# coding utf8
 mpl_color_map = {
     'b': 'blue',
     'g': 'green',
