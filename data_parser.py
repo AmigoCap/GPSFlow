@@ -1,6 +1,7 @@
 # coding utf8
 import pandas as pd
 import datetime
+import distance
 
 def importData(file) :
     # Loading data
@@ -44,3 +45,13 @@ def getDate(startDate, endDate,df) :
     a = df[df['date'] == endDate].index.tolist()[0]
     b = df[df['date'] == startDate].index.tolist()[0]
     return df.loc[a:b,]
+
+
+def getData(file,bComputeDistance,bComputeVitesse):
+    dataFrame=importData(file)
+    if bComputeDistance or bComputeVitesse:
+        dataFrame=distance.getDistance(dataFrame)
+    if bComputeVitesse:
+        dataFrame=distance.getVitesse(dataFrame)
+    return dataFrame
+
