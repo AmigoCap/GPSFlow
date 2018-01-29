@@ -19,19 +19,18 @@ def haversine(lon1, lat1, lon2, lat2):
     return km
 
 
-def getDistance(file):
-    df = file
+def getDistance(dataFrame):
     distance = []
-    for i in range(df['timestampMs'].size - 1):
+    for i in range(dataFrame['timestampMs'].size - 1):
         distance.append(haversine(
-                        df["longitude"][i],
-                        df["latitude"][i],
-                        df["longitude"][i+1],
-                        df["latitude"][i+1]))
+            dataFrame["longitude"][i],
+            dataFrame["latitude"][i],
+            dataFrame["longitude"][i+1],
+            dataFrame["latitude"][i+1]))
     distance.append(0)
-    df['distance'] = distance
+    dataFrame['distance'] = distance
 
-    return df
+    return dataFrame
 
 def velocity(dist, t1, t2):
     #Vitesse en metre par seconde
@@ -40,18 +39,17 @@ def velocity(dist, t1, t2):
     v2 = v1*3.6
     return v2
 
-def getVitesse(file):
-    df = file
+def getVitesse(dataFrame):
     vitesse = []
-    for i in range(df['timestampMs'].size - 1):
+    for i in range(dataFrame['timestampMs'].size - 1):
         vitesse.append(velocity(
-            df["distance"][i],
-            df["timestampMs"][i+1],
-            df["timestampMs"][i]
+            dataFrame["distance"][i],
+            dataFrame["timestampMs"][i+1],
+            dataFrame["timestampMs"][i]
         ))
     vitesse.append(0)
 
-    df['vitesse'] = vitesse
+    dataFrame['vitesse'] = vitesse
 
-    return df
+    return dataFrame
 
