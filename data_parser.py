@@ -3,9 +3,9 @@ import pandas as pd
 import datetime
 import distance
 
-def importData(file) :
+def importData(nameFile) :
     # Loading data
-    raw = pd.io.json.read_json(file)
+    raw = pd.io.json.read_json(nameFile)
     df = raw['locations'].apply(pd.Series)
 
     # Clean up columns
@@ -47,8 +47,8 @@ def getDate(startDate, endDate,df) :
     return df.loc[a:b,]
 
 
-def getData(file,bComputeDistance,bComputeVitesse):
-    dataFrame=importData(file)
+def getData(nameFile,bComputeDistance,bComputeVitesse):
+    dataFrame=importData(nameFile)
     if bComputeDistance or bComputeVitesse:
         dataFrame=distance.getDistance(dataFrame)
     if bComputeVitesse:
