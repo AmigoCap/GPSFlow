@@ -33,25 +33,24 @@ def importData(nameFile) :
 
     df['time'] = time
 
-    delai = []
-    delai.append(0)
+    delay = []
+    delay.append(0)
     for i in range(df['timestampMs'].size - 1):
-        delai.append(int(int(df['timestampMs'][i]) - int(df['timestampMs'][i + 1])) / 1000)
-    df['delai'] = delai
+        delay.append(int(int(df['timestampMs'][i]) - int(df['timestampMs'][i + 1])) / 1000)
+    df['delay'] = delay
 
     return df
 
-def getDate(startDate, endDate,df) :
+def getDate(startDate, endDate, df) :
     a = df[df['date'] == endDate].index.tolist()[0]
     b = df[df['date'] == startDate].index.tolist()[0]
-    return df.loc[a:b,]
+    return df.loc[a:(b - 1),]
 
 
-def getData(nameFile,bComputeDistance,bComputeVitesse):
-    dataFrame=importData(nameFile)
-    if bComputeDistance or bComputeVitesse:
-        dataFrame=distance.getDistance(dataFrame)
-    if bComputeVitesse:
-        dataFrame=distance.getVitesse(dataFrame)
+def getData(nameFile, bComputeDistance, bComputeVelocity):
+    dataFrame = importData(nameFile)
+    if bComputeDistance or bComputeVelocity:
+        dataFrame = distance.getDistance(dataFrame)
+    if bComputeVelocity:
+        dataFrame = distance.getVelocity(dataFrame)
     return dataFrame
-
