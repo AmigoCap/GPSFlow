@@ -52,3 +52,17 @@ def getVelocity(dataFrame):
     dataFrame['velocity'] = velocities
 
     return dataFrame
+
+def getAcceleration(dataFrame):
+    accelerations = []
+    for i in range(dataFrame['timestampMs'].size - 1):
+        accelerations.append(calculateVelocity(
+            dataFrame["velocity"][i],
+            dataFrame["timestampMs"][i+1],
+            dataFrame["timestampMs"][i]
+        ))
+    accelerations.append(0)
+
+    dataFrame['acceleration'] = accelerations
+
+    return dataFrame
