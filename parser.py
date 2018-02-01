@@ -1,60 +1,54 @@
 # coding utf8
+
 import pandas as pd
 import datetime
 import distance
 
-def getData(nameFile, isAndroid=True, bComputeDistance=False, bComputeVelocity=False, bComputeAcceleration=False):
+def importJson(filepath, addColumns=True) :
 
     # Loading data
-    raw = pd.io.json.read_json(nameFile)
+    raw = pd.io.json.read_json(filepath)
     df = raw['locations'].apply(pd.Series)
 
-    # Clean up columns
-    del df['accuracy']
-    del df['altitude']
-    del df['velocity']
-    del df['heading']
-
-    if (isAndroid):
-        del df['activity']
-
+    # Create latitude and longitude columns
     df['latitude'] = df['latitudeE7'] * 0.0000001
     df['longitude'] = df['longitudeE7'] * 0.0000001
 
-    del df['longitudeE7']
-    del df['latitudeE7']
+     # Clean up columns
+    columns = ["timestampMs", "latitude", "longitude"]
+    for col in list(df) :
+        if col not in columns :
+            del df[col]
 
+    # Add date column in format 'dd-mm-YY'
     dates = []
-    for row in df['timestampMs']:
-        dates.append(datetime.datetime.fromtimestamp(int(row) / 1000).strftime('%d-%m-%Y'))
-
+    for timestamp in df['timestampMs']:
+        dates.append(datetime.datetime.fromtimestamp(int(timestamp) / 1000).strftime('%d-%m-%Y'))
     df['date'] = dates
 
+    # Add time column in format 'HH:MM:SS'
     time = []
     for row in df['timestampMs']:
         time.append(datetime.datetime.fromtimestamp(int(row) / 1000).strftime('%H:%M:%S'))
-
     df['time'] = time
 
-    delay = []
-    delay.append(0)
-    for i in range(df['timestampMs'].size - 1):
-        delay.append(int(int(df['timestampMs'][i]) - int(df['timestampMs'][i + 1])) / 1000)
-    df['delay'] = delay
+    if not addColumns :
+        return df
+    else :
+        # Add delay column seconds
+        delay = []
+        delay.append(0)
+        for i in range(df['timestampMs'].size - 1):
+            delay.append(int(int(df['timestampMs'][i]) - int(df['timestampMs'][i + 1])) / 1000)
+        df['delay'] = delay
 
-    if bComputeDistance or bComputeVelocity or bComputeAcceleration:
-        df = distance.getDistance(df)
+        # Add distance, velocity and acceleration 
+        df['distance'] = distance.getDistances(df)
+        df['velocity'] = distance.getVelocities(df)
+        df['acceleration'] = distance.getAccelerations(df)
 
-    if bComputeVelocity or bComputeAcceleration:
-        df = distance.getVelocity(df)
+        return df
 
-    if bComputeAcceleration:
-        df = distance.getAcceleration(df)
-
-    return df
-
-def getDate(startDate, endDate, df) :
-    a = df[df['date'] == endDate].index.tolist()[0]
-    b = df[df['date'] == startDate].index.tolist()[0]
-    result = df.loc[a:(b - 1),]
-    return result.reset_index(drop=True)
+def selectDate(date, df) :
+    result = df[df['date'] == date]
+    return result.reset_index(drop=True) # Reset indices of dataframe

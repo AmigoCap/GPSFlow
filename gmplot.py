@@ -1,10 +1,11 @@
 # coding utf8
+
 import math
 import requests
 import json
 import os
 
-from colors import mpl_color_map, html_color_codes
+from colors import color_map, color_codes
 
 def safe_iter(var):
     try:
@@ -27,8 +28,8 @@ class GoogleMapPlotter(object):
         self.radpoints = []
         self.gridsetting = None
         self.coloricon = os.path.join(os.path.dirname(__file__), 'markers/%s.png')
-        self.color_dict = mpl_color_map
-        self.html_color_codes = html_color_codes
+        self.color_dict = color_map
+        self.html_color_codes = color_codes
 
     @classmethod
     def from_geocode(cls, location_string, zoom=13):

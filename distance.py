@@ -1,10 +1,10 @@
 # coding utf8
-from math import radians, cos, sin, asin, sqrt
-import parser
 
-def haversine(lon1, lat1, lon2, lat2):
+from math import radians, cos, sin, asin, sqrt
+
+def haversineDistance(lon1, lat1, lon2, lat2):
     """
-    Calculate the great circle distance between two points
+    Computes the great circle distance between two points
     on the earth (specified in decimal degrees)
     """
     # convert decimal degrees to radians
@@ -18,51 +18,51 @@ def haversine(lon1, lat1, lon2, lat2):
     m = 6371000 * c
     return m
 
+def getDistances(df):
+    size = df['timestampMs'].size
+    distances = []
+    for i in range(size - 1):
+        distances.append(haversineDistance(
+            df["longitude"][i],
+            df["latitude"][i],
+            df["longitude"][i+1],
+            df["latitude"][i+1]))
 
-def getDistance(dataFrame):
-    distance = []
-    for i in range(dataFrame['timestampMs'].size - 1):
-        distance.append(haversine(
-            dataFrame["longitude"][i],
-            dataFrame["latitude"][i],
-            dataFrame["longitude"][i+1],
-            dataFrame["latitude"][i+1]))
-    distance.append(0)
-    dataFrame['distance'] = distance
+    distances.append(0)
 
-    return dataFrame
+    return distances
 
-def calculateVelocity(dist, t1, t2):
+def computeVelocity(dist, t1, t2):
     #Velocity in m/s
-    v1 = (dist)/((float(t2)-float(t1))*pow(10, -3))
+    v1 = (dist) / ((float(t2)-float(t1))*pow(10, -3))
     #Velocity in km/h
-    v2 = v1*3.6
+    v2 = v1 * 3.6
     return v2
 
-def getVelocity(dataFrame):
+def getVelocities(df):
+    size = df['timestampMs'].size
     velocities = []
-    for i in range(dataFrame['timestampMs'].size - 1):
-        velocities.append(calculateVelocity(
-            dataFrame["distance"][i],
-            dataFrame["timestampMs"][i+1],
-            dataFrame["timestampMs"][i]
+    for i in range(size - 1):
+        velocities.append(computeVelocity(
+            df["distance"][i],
+            df["timestampMs"][i+1],
+            df["timestampMs"][i]
         ))
+
     velocities.append(0)
 
-    dataFrame['velocity'] = velocities
+    return velocities
 
-    return dataFrame
-
-def getAcceleration(dataFrame):
+def getAccelerations(df) :
+    size = df['timestampMs'].size
     accelerations = []
-    for i in range(dataFrame['timestampMs'].size - 1):
-        accelerations.append(calculateVelocity(
-            dataFrame["velocity"][i],
-            dataFrame["timestampMs"][i+1],
-            dataFrame["timestampMs"][i]
+    for i in range(size - 1):
+        accelerations.append(computeVelocity(
+            df["velocity"][i],
+            df["timestampMs"][i+1],
+            df["timestampMs"][i]
         ))
+
     accelerations.append(0)
 
-    dataFrame['acceleration'] = accelerations
-
-    return dataFrame
+    return accelerations
