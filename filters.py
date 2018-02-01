@@ -1,15 +1,10 @@
 # coding utf8
 
-import data_parser as parser
+import parser
 import matplotlib.pyplot as plt
 import distance 
 import pandas as pd
 
-df = parser.importData("Data/Takout/anonymous_2015.json")
-
-
-data = parser.getDate("20-09-2015", "21-09-2015",df)
-data.index = range(data['latitude'].size)
 
 ## Mean filter (utile pour des points proches)
 
@@ -105,14 +100,5 @@ def showError(data):
 	plt.plot(errorDistances(medianFilter(data)), 'r')
 	plt.show()
 
-
-if __name__=='__main__':
-	showMeanFilter(data)
-	showMedianFilter(data)
-	data = medianFilter(meanFilter(data))
-	plt.plot(errorDistances(data, "lat_mean_filt", "lng_mean_filt"))
-	plt.show()
-	plt.plot(errorDistances(data, "lat_med_filt", "lng_med_filt"), 'r')
-	plt.show()
 
 		
