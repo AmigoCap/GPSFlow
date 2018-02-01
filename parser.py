@@ -47,10 +47,12 @@ def getDate(startDate, endDate, df) :
     return df.loc[a:(b - 1),]
 
 
-def getData(nameFile, bComputeDistance, bComputeVelocity):
+def getData(nameFile, bComputeDistance, bComputeVelocity,bComputeAcceleration):
     dataFrame = importData(nameFile)
-    if bComputeDistance or bComputeVelocity:
+    if bComputeDistance or bComputeVelocity or bComputeAcceleration:
         dataFrame = distance.getDistance(dataFrame)
     if bComputeVelocity:
         dataFrame = distance.getVelocity(dataFrame)
+    if bComputeAcceleration:
+        dataFrame = distance.getAcceleration(dataFrame)
     return dataFrame
