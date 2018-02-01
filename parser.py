@@ -3,17 +3,20 @@ import pandas as pd
 import datetime
 import distance
 
-def importData(nameFile) :
+def getData(nameFile, isAndroid=True, bComputeDistance=False, bComputeVelocity=False, bComputeAcceleration=False):
+
     # Loading data
     raw = pd.io.json.read_json(nameFile)
     df = raw['locations'].apply(pd.Series)
 
     # Clean up columns
     del df['accuracy']
-    del df['activity']
     del df['altitude']
     del df['velocity']
     del df['heading']
+
+    if (isAndroid):
+        del df['activity']
 
     df['latitude'] = df['latitudeE7'] * 0.0000001
     df['longitude'] = df['longitudeE7'] * 0.0000001
@@ -39,20 +42,19 @@ def importData(nameFile) :
         delay.append(int(int(df['timestampMs'][i]) - int(df['timestampMs'][i + 1])) / 1000)
     df['delay'] = delay
 
+    if bComputeDistance or bComputeVelocity or bComputeAcceleration:
+        df = distance.getDistance(df)
+
+    if bComputeVelocity or bComputeAcceleration:
+        df = distance.getVelocity(df)
+
+    if bComputeAcceleration:
+        df = distance.getAcceleration(df)
+
     return df
 
 def getDate(startDate, endDate, df) :
     a = df[df['date'] == endDate].index.tolist()[0]
     b = df[df['date'] == startDate].index.tolist()[0]
-    return df.loc[a:(b - 1),]
-
-
-def getData(nameFile, bComputeDistance, bComputeVelocity,bComputeAcceleration):
-    dataFrame = importData(nameFile)
-    if bComputeDistance or bComputeVelocity or bComputeAcceleration:
-        dataFrame = distance.getDistance(dataFrame)
-    if bComputeVelocity:
-        dataFrame = distance.getVelocity(dataFrame)
-    if bComputeAcceleration:
-        dataFrame = distance.getAcceleration(dataFrame)
-    return dataFrame
+    result = df.loc[a:(b - 1),]
+    return result.reset_index(drop=True)

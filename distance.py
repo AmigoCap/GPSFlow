@@ -15,8 +15,8 @@ def haversine(lon1, lat1, lon2, lat2):
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     c = 2 * asin(sqrt(a))
     # Radius of earth in kilometers is 6371
-    km = 6371000 * c
-    return km
+    m = 6371000 * c
+    return m
 
 
 def getDistance(dataFrame):
