@@ -1,6 +1,6 @@
 # coding utf8
 from math import radians, cos, sin, asin, sqrt
-import data_parser as parser
+import parser
 
 def haversine(lon1, lat1, lon2, lat2):
     """
@@ -19,39 +19,36 @@ def haversine(lon1, lat1, lon2, lat2):
     return km
 
 
-def getDistance(file):
-    df = file
+def getDistance(dataFrame):
     distance = []
-    for i in range(df['timestampMs'].size - 1):
+    for i in range(dataFrame['timestampMs'].size - 1):
         distance.append(haversine(
-                        df["longitude"][i],
-                        df["latitude"][i],
-                        df["longitude"][i+1],
-                        df["latitude"][i+1]))
+            dataFrame["longitude"][i],
+            dataFrame["latitude"][i],
+            dataFrame["longitude"][i+1],
+            dataFrame["latitude"][i+1]))
     distance.append(0)
-    df['distance'] = distance
+    dataFrame['distance'] = distance
 
-    return df
+    return dataFrame
 
-def velocity(dist, t1, t2):
-    #Vitesse en metre par seconde
+def calculateVelocity(dist, t1, t2):
+    #Velocity in m/s
     v1 = (dist)/((float(t2)-float(t1))*pow(10, -3))
-    #Vitesse en km/h
+    #Velocity in km/h
     v2 = v1*3.6
     return v2
 
-def getVitesse(file):
-    df = file
-    vitesse = []
-    for i in range(df['timestampMs'].size - 1):
-        vitesse.append(velocity(
-            df["distance"][i],
-            df["timestampMs"][i+1],
-            df["timestampMs"][i]
+def getVelocity(dataFrame):
+    velocities = []
+    for i in range(dataFrame['timestampMs'].size - 1):
+        velocities.append(calculateVelocity(
+            dataFrame["distance"][i],
+            dataFrame["timestampMs"][i+1],
+            dataFrame["timestampMs"][i]
         ))
-    vitesse.append(0)
+    velocities.append(0)
 
-    df['vitesse'] = vitesse
+    dataFrame['velocity'] = velocities
 
-    return df
-
+    return dataFrame

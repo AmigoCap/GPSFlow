@@ -4,8 +4,7 @@ import requests
 import json
 import os
 
-from color_dicts import mpl_color_map, html_color_codes
-
+from colors import mpl_color_map, html_color_codes
 
 def safe_iter(var):
     try:
