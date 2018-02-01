@@ -67,7 +67,7 @@ def medianFilter(data, n=2):
 def errorDistances(data, filt_lat_name, filt_lng_name):
 	error=[]
 	for i in range(data['latitude'].size):
-		error.append(distance.haversine(data["longitude"][i], data["latitude"][i], data[filt_lng_name][i], data[filt_lat_name][i]))
+		error.append(distance.haversineDistance(data["longitude"][i], data["latitude"][i], data[filt_lng_name][i], data[filt_lat_name][i]))
 	return error
 
 
@@ -94,11 +94,6 @@ def showMedianFilter(data):
 
 	plt.show()
 
-
-def showError(data):
-	plt.plot(errorDistances(meanFilter(data)))
-	plt.plot(errorDistances(medianFilter(data)), 'r')
-	plt.show()
 
 
 		
