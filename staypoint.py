@@ -56,12 +56,12 @@ def findStayPoints(df, lower_limit, radius, max_outliers) :
 
     if len(is_mouvement) < df["timestampMs"].size :
         if is_mouvement[i-1]:
-            for n in range (i, df["timestampMs"].size+1) :
+            for n in range (i, df["timestampMs"].size) :
                 is_mouvement.append(True)
                 segment_mouvement.append(l)
 
         else :
-            for n in range (i, df["timestampMs"].size+1) :
+            for n in range (i, df["timestampMs"].size) :
                 is_mouvement.append(False)
                 segment_mouvement.append(l)
 
