@@ -1,3 +1,6 @@
+# coding UTF8
+
+import distance
 
 def fdistance(df, i, j) :
     return distance.haversineDistance(
@@ -14,7 +17,7 @@ def findStayPoints(df, lower_limit, radius, max_outliers) :
     i = 0
 
 
-    while i < df["timestampMs"].size - max(lower_limit, max_outliers):
+    while i < (df["timestampMs"].size - max(lower_limit, max_outliers) - 1):
         # Vérifier si i est un début de stay point
         mouvement = False
         for k in range(lower_limit) :
