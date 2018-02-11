@@ -4,7 +4,9 @@ import parser
 import matplotlib.pyplot as plt
 import distance 
 import pandas as pd
+import numpy as np
 
+pd.options.mode.chained_assignment = None
 
 ## Mean filter (utile pour des points proches)
 
@@ -30,6 +32,34 @@ def meanFilter(data, n=2):
 
 	data['lat_mean_filt']=lat_filtered
 	data['lng_mean_filt']=long_filtered
+
+	return data
+
+
+def showMeanFilter(data):
+
+	data = meanFilter(data)
+
+	plt.plot(data['latitude'].values, data['longitude'].values, 'b')
+	plt.plot(data['lat_mean_filt'].values, data['lng_mean_filt'].values, 'r')
+
+	plt.show()
+
+def meanFilterSegment(data, n, first_index, last_index):
+
+	lat_filtered={}
+	long_filtered={}
+
+	for i in range(first_index+n, last_index-n):
+		lat_filtered[i]=0
+		long_filtered[i]=0
+		for j in range(i-n,i+n+1):
+			lat_filtered[i]+=data['latitude'][j]/(2*n+1)
+			long_filtered[i]+=data['longitude'][j]/(2*n+1)
+
+	for i in range(first_index+n, last_index-n):
+		data['latitude'][i]=lat_filtered[i]
+		data['longitude'][i]=long_filtered[i]
 
 	return data
 
@@ -63,6 +93,36 @@ def medianFilter(data, n=2):
 
 	return data
 
+def showMedianFilter(data):
+
+	data = medianFilter(data)
+
+	plt.plot(data['latitude'].values, data['longitude'].values, 'b')
+	plt.plot(data['lat_med_filt'].values, data['lng_med_filt'].values, 'r')
+
+	plt.show()
+
+
+def medianFilterSegment(data, n, first_index, last_index):
+
+	lat_filtered={}
+	long_filtered={}
+
+	for i in range(first_index+n, last_index-n):
+		lat_window = data['latitude'][i-n:i+n+1].tolist()
+		lat_window.sort()
+		long_window = data['longitude'][i-n:i+n+1].tolist()
+		long_window.sort()
+
+		lat_filtered[i] = lat_window[n]
+		long_filtered[i] = long_window[n]
+
+	for i in range(first_index+n, last_index-n):
+		data['latitude'][i]=lat_filtered[i]
+		data['longitude'][i]=long_filtered[i]
+
+	return data
+
 
 def errorDistances(data, filt_lat_name, filt_lng_name):
 	error=[]
@@ -75,25 +135,62 @@ def sumErrorDistance(data, filt_lat_name, filt_lng_name):
 	return sum(errorDistances(data, filt_lat_name, filt_lng_name))
 
 
-def showMeanFilter(data):
-
-	data = meanFilter(data)
-
-	plt.plot(data['latitude'].values, data['longitude'].values, 'b')
-	plt.plot(data['lat_mean_filt'].values, data['lng_mean_filt'].values, 'r')
-
-	plt.show()
 
 
-def showMedianFilter(data):
+## filtrage par segment
 
-	data = medianFilter(data)
+def delay_segment_dataframe(df, limit) :
+	segnum = 0
+	segments = []
 
-	plt.plot(data['latitude'].values, data['longitude'].values, 'b')
-	plt.plot(data['lat_med_filt'].values, data['lng_med_filt'].values, 'r')
+	for i in range(df["time"].size) :
+		if (df["delay"][i] > limit) :
+			segments.append(segnum)
+			segnum += 1;
+		else :
+			segments.append(segnum)
 
-	plt.show()
+	df["segment"] = segments
+	return df
+
+def filterBySegment(input_data, limite):
+	data = input_data.copy()
+	lat_filtered=[0]*len(data)
+	long_filtered=[0]*len(data)
+
+	data = delay_segment_dataframe(data, limit=limite)
+	segment_count = max(data['segment'])
+
+	segment_indexes = [0]
+
+	j=0
+	for i in range(data['segment'].size):
+		if data['segment'][i]!=j:
+			j+=1
+			segment_indexes.append(i)
+			
+	segment_indexes.append(data['segment'].size+1)
+
+	for k in range(segment_count):
+		distances = data["distance"][segment_indexes[k]:segment_indexes[k+1]]
+		dist_moy = np.mean(distances)
+
+		if dist_moy<20 and segment_indexes[k+1]-segment_indexes[k]>8:
+			data = medianFilterSegment(data, 3, segment_indexes[k], segment_indexes[k+1])
+
+		elif dist_moy<50 and segment_indexes[k+1]-segment_indexes[k]>6:
+			data = medianFilterSegment(data, 2, segment_indexes[k], segment_indexes[k+1])
+
+		elif dist_moy<150 and segment_indexes[k+1]-segment_indexes[k]>6:
+			data = meanFilterSegment(data, 2, segment_indexes[k], segment_indexes[k+1])
 
 
+	# Add distance, velocity and acceleration 
+	data['distance'] = distance.getDistances(data)
+	data['velocity'] = distance.getVelocities(data)
+	data['acceleration'] = distance.getAccelerations(data)
+
+
+	return data
 
 		
