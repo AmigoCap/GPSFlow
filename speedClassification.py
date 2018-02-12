@@ -23,20 +23,21 @@ def getBoundiaries(lK):
     lBoundiaries.append(100)
     return lBoundiaries
 
-def calcFirstSegmentation(lBoundiaries,whitened):
+def calcFirstSegmentation(lBoundiaries,whitened,bPadd):
     lFirstSpeedSegmentation=[[] for ii in range (len(lBoundiaries)-1)]
     for ii in range(len(whitened)):
         for jj in range(len(lBoundiaries)-1):
             if whitened[ii][0]>lBoundiaries[jj] and whitened[ii][0]<lBoundiaries[jj+1]:
                 lFirstSpeedSegmentation[jj].append(whitened[ii][1])
-                for kk in range(jj+1,len(lFirstSpeedSegmentation)):
-                    lFirstSpeedSegmentation[kk].append(-1.0)
+                if bPadd:
+                    for kk in range(jj+1,len(lFirstSpeedSegmentation)):
+                        lFirstSpeedSegmentation[kk].append(-1.0)
     return lFirstSpeedSegmentation
 
-def calcSpeedTreend(i):
-    if i < 0.4:
+def calcSpeedTrend(i,lowThreshold=0.2,highThreshold=1.2):
+    if i < 0.2:
         return 0
-    elif i>2.0:
+    elif i>1.2:
         return 2
     else:
         return 1
