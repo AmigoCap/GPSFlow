@@ -65,6 +65,6 @@ def calcMean(lFirstSpeedSegmentation):
 
 def agglomerateSpeedSegments(lFirstSpeedSegmentation):
     lMeans=calcMean(lFirstSpeedSegmentation)
-    speedTrend=[calcSpeedTreend(meanSpeed) for meanSpeed in lMeans ]
+    speedTrend=[calcSpeedTrend(meanSpeed) for meanSpeed in lMeans ]
     (l,a)=(concacatenateLists(speedTrend,lFirstSpeedSegmentation))
     return (l,a)
