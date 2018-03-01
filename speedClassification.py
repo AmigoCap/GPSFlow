@@ -35,9 +35,9 @@ def calcFirstSegmentation(lBoundiaries,whitened,bPadd):
     return lFirstSpeedSegmentation
 
 def calcSpeedTrend(i,lowThreshold=0.2,highThreshold=1.2):
-    if i < 0.2:
+    if i < lowThreshold:
         return 0
-    elif i>1.2:
+    elif i>highThreshold:
         return 2
     else:
         return 1
@@ -63,8 +63,16 @@ def concacatenateLists(speedTrend,lS):
 def calcMean(lFirstSpeedSegmentation):
     return([np.mean(list(filter(lambda x: x > 0, segment))) for segment in lFirstSpeedSegmentation])
 
-def agglomerateSpeedSegments(lFirstSpeedSegmentation):
-    lMeans=calcMean(lFirstSpeedSegmentation)
-    speedTrend=[calcSpeedTrend(meanSpeed) for meanSpeed in lMeans ]
+def calcMedian(lFirstSpeedSegmentation):
+    return([np.median(list(filter(lambda x: x > 0, segment))) for segment in lFirstSpeedSegmentation])
+
+
+
+def agglomerateSpeedSegments(lFirstSpeedSegmentation,lowThreshold,highThreshold,bMedian):
+    if bMedian:
+        lMeans=calcMedian(lFirstSpeedSegmentation)
+    else:
+        lMeans=calcMean(lFirstSpeedSegmentation)
+    speedTrend=[calcSpeedTrend(meanSpeed,lowThreshold,highThreshold) for meanSpeed in lMeans ]
     (l,a)=(concacatenateLists(speedTrend,lFirstSpeedSegmentation))
     return (l,a)
