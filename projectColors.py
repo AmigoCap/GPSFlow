@@ -22,3 +22,7 @@ def defineColorsList():
         'sandybrown',
         'violet'
     ]
+
+def defineColorsShortList():
+
+    return  ['seagreen','orange','red']	
