@@ -1,7 +1,6 @@
 # coding utf8
 
 import parser
-import matplotlib.pyplot as plt
 import distance 
 import pandas as pd
 import numpy as np
@@ -10,7 +9,12 @@ pd.options.mode.chained_assignment = None
 
 ## Mean filter (utile pour des points proches)
 
-def meanFilter(data, n=2):
+def meanFilter(df, n=2, replace=False):
+
+	if replace:
+		data = df.copy(deep=True)
+	else:
+		data=df
 
 	## la fenêtre glissante sera de taille 2n+1
 
@@ -30,8 +34,12 @@ def meanFilter(data, n=2):
 			lat_filtered[i]+=data['latitude'][j]/(2*n+1)
 			long_filtered[i]+=data['longitude'][j]/(2*n+1)
 
-	data['lat_mean_filt']=lat_filtered
-	data['lng_mean_filt']=long_filtered
+	if replace:
+		data['latitude']=lat_filtered
+		data['longitude']=long_filtered
+	else:
+		data['lat_mean_filt']=lat_filtered
+		data['lng_mean_filt']=long_filtered
 
 	return data
 
@@ -45,7 +53,10 @@ def showMeanFilter(data):
 
 	plt.show()
 
-def meanFilterSegment(data, n, first_index, last_index):
+
+def meanFilterSegment(df, n, first_index, last_index):
+
+	data = df.copy(deep=True)
 
 	lat_filtered={}
 	long_filtered={}
@@ -66,7 +77,12 @@ def meanFilterSegment(data, n, first_index, last_index):
 
 ## Median filter 
 
-def medianFilter(data, n=2):
+def medianFilter(df, n=2, replace=False):
+
+	if replace:
+		data = df.copy(deep=True)
+	else:
+		data=df
 
 	lat_filtered=[0]*len(data)
 	long_filtered=[0]*len(data)
@@ -88,22 +104,19 @@ def medianFilter(data, n=2):
 		lat_filtered[i] = lat_window[n]
 		long_filtered[i] = long_window[n]
 
-	data['lat_med_filt']=lat_filtered
-	data['lng_med_filt']=long_filtered
+	if replace:
+		data['latitude']=lat_filtered
+		data['longitude']=long_filtered
+	else:
+		data['lat_mean_filt']=lat_filtered
+		data['lng_mean_filt']=long_filtered
 
 	return data
 
-def showMedianFilter(data):
 
-	data = medianFilter(data)
+def medianFilterSegment(df, n, first_index, last_index):
 
-	plt.plot(data['latitude'].values, data['longitude'].values, 'b')
-	plt.plot(data['lat_med_filt'].values, data['lng_med_filt'].values, 'r')
-
-	plt.show()
-
-
-def medianFilterSegment(data, n, first_index, last_index):
+	data = df.copy(deep=True)
 
 	lat_filtered={}
 	long_filtered={}
@@ -124,6 +137,7 @@ def medianFilterSegment(data, n, first_index, last_index):
 	return data
 
 
+
 def errorDistances(data, filt_lat_name, filt_lng_name):
 	error=[]
 	for i in range(data['latitude'].size):
@@ -133,7 +147,6 @@ def errorDistances(data, filt_lat_name, filt_lng_name):
 
 def sumErrorDistance(data, filt_lat_name, filt_lng_name):
 	return sum(errorDistances(data, filt_lat_name, filt_lng_name))
-
 
 
 
@@ -152,6 +165,7 @@ def delay_segment_dataframe(df, limit) :
 
 	df["segment"] = segments
 	return df
+
 
 def filterBySegment(input_data, limite):
 	data = input_data.copy()
@@ -192,5 +206,8 @@ def filterBySegment(input_data, limite):
 
 
 	return data
+
+
+
 
 		
