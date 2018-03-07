@@ -76,3 +76,11 @@ def agglomerateSpeedSegments(lFirstSpeedSegmentation,lowThreshold,highThreshold,
     speedTrend=[calcSpeedTrend(meanSpeed,lowThreshold,highThreshold) for meanSpeed in lMeans ]
     (l,a)=(concacatenateLists(speedTrend,lFirstSpeedSegmentation))
     return (l,a)
+
+def initSpeedClass(df) :
+    size = df['velocity'].size
+    accelerations = []
+    for i in range(size - 1):
+        accelerations.append(-1)
+    accelerations.append(-1)
+    return accelerations
