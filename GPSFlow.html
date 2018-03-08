@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<head
+<html lang="en">
+  <meta charset="utf-8">
+  <title>GPSFlow</title>
+  <link rel="icon" type="image/JPG" href="fb.jpg"/>
+<script src="d3.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <style>
+
+  .month {
+    margin-right: 8px;
+  }
+  .month-name {
+    font-size: 85%;
+    fill: #777;
+    font-family: Arial, Helvetica;
+  }
+  .day.hover {
+    stroke: #6d6E70;
+    stroke-width: 2;
+  }
+  .day.focus {
+    stroke: #ffff33;
+    stroke-width: 2;
+  }
+
+  ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+  }
+
+  li {
+      float: left;
+  }
+
+  li a {
+      display: block;
+      font:15px sans-serif;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+  }
+
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+      background-color: #111;
+  }
+
+  .active {
+      background-color: #4CAF50;
+  }
+
+  .custom-file-upload {
+      fill: #A0A0A0;
+      background-color: #A0A0A0;
+      font:15px sans-serif;
+      font-weight: bold;
+      display: inline-block;
+      padding: 6px 12px;
+      margin-right: 10px;
+      cursor: pointer;
+  }
+  input[type="file"] {
+      display: none;
+  }
+
+  .custom-about {
+    fill: #A0A0A0;
+    background-color: #A0A0A0;
+    font:14px sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .modal-content {
+      background-color: #fefefe;
+      font: 16px sans-serif;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 30%;
+  }
+
+  /* The Close Button */
+  .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+  .title {
+    color: #A0A0A0;
+    font: 30px sans-serif;
+    font-weight: bold;
+  }
+
+  #tooltip {
+       background-color: #fff;
+       border: 2px solid #ccc;
+       padding: 10px;
+     }
+
+  </style>
+</head>
+<body>
+  <div>
+    <ul>
+      <li class="title">GPS Flow</li>
+      <li class = "nav-item" style="float:right">
+            <button type="button" class="custom-about" id="myBtn">
+                About
+            </button>
+      </li>
+      <li  style="float:right">
+        <input id="file" type="file" name="file" class="inputfile" onchange="read(this.files)">
+        <label for="file" class="custom-file-upload">Use your own file</label>
+      </li>
+    </ul>
+    <div id="heat_map" style="display: inline-block;"></div>
+    <div id="google_maps" style="display: inline-block; position: relative"></div>
+    <div id="resume_day" style="display: inline-block;"></div>
+  </div>
+
+  <!-- The Modal -->
+<div id="myModal" style="overflow: scroll;" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>
+    <br>
+    Authors :
+    				<a href="https://github.com/MathReynaud"> Mathilde Reynaud </a> |
+    				<a href="https://github.com/thalkz"> Roland Lamidieu</a> |
+            <a href="https://github.com/alexandrospopov"> Alexandre Popov </a> |
+            <a href="https://github.com/alexandrospopov"> François Paugam </a> |
+            <a href=""> Skander Malouche </a>
+            </br>
+
+    </p>
+    <h2> What is this project about ?</h2>
+
+  </div>
+
+</div>
+  <script>
+
+  var inputs = document.querySelectorAll( '.inputfile' );
+  Array.prototype.forEach.call( inputs, function( input )
+  {
+  	var label	 = input.nextElementSibling,
+  		labelVal = label.innerHTML;
+
+  	input.addEventListener( 'change', function( e )
+  	{
+  		var fileName = '';
+  		if( this.files && this.files.length > 1 )
+  			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+  		else
+  			fileName = e.target.value.split( '\\' ).pop();
+
+  		if( fileName )
+  			label.querySelector( 'span' ).innerHTML = fileName;
+  		else
+  			label.innerHTML = labelVal;
+  	});
+  });
+
+// Define stuff
+{
+  var reader;
+  var json;
+}
+
+  // Define div, svg, etc..
+  {
+    //D3 elements
+      var div_title = d3.select('#title')
+      var div_heat_map = d3.select('#heat_map')
+      var div_google_maps = d3.select('#google_maps')
+      var div_resume_day = d3.select('#resume_day')
+
+    //JS Elements
+      var div_title_2 = document.getElementById('title')
+      var div_heat_map_2 = document.getElementById('heat_map')
+      var div_google_maps_2 = document.getElementById('google_maps')
+      var div_resume_day_2 = document.getElementById('resume_day')
+    }
+
+  //Define margins, heights and widths
+  {
+    //Heat map
+    var margin1 = {
+      top: 10,
+      right: 20,
+      bottom: 20,
+      left: 40,
+    };
+    //Google maps
+    var margin2 = {
+      top: 10,
+      right: 20,
+      bottom: 30,
+      left: 40,
+    };
+    // Resume Day
+    var margin3 = {
+      top: 60,
+      right: 60,
+      bottom: 50,
+      left: 40,
+    };
+
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    // Set heights
+    var first_row_height = (height*0.73) + "px";
+    var second_row_height = (height*0.17) + "px";
+
+    div_heat_map_2.style.height = first_row_height;
+    div_google_maps_2.style.height = first_row_height;
+    div_resume_day_2.style.height = second_row_height;
+
+    // Set widths
+    var first_col_width = "45%";
+    var second_col_width = "49%";
+    var third_col_width = "100%"
+
+    div_heat_map_2.style.width = first_col_width;
+    div_google_maps_2.style.width = second_col_width;
+    div_resume_day_2.style.width = third_col_width;
+
+    var w1 = div_heat_map_2.clientWidth - margin1.left - margin1.right;
+    var h1 = div_heat_map_2.clientHeight - margin1.top - margin1.bottom;
+    var w2 = div_google_maps_2.clientWidth - margin2.left - margin2.right;
+    var h2 = div_google_maps_2.clientHeight - margin2.top - margin2.bottom;
+    var w3 = div_resume_day_2.clientWidth - margin3.left - margin3.right;
+    var h3 = div_resume_day_2.clientHeight - margin3.top - margin3.bottom;
+
+  }
+
+  // Defin the About pop up
+  {
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+  }
+
+  // Define div, svg, etc..
+  {
+
+    var body = d3.select("body");
+
+    var tooltip = body
+      .append("div").attr("id", "tooltip")
+      .style("position", "absolute")
+      .style("z-index", "10")
+      .style("visibility", "hidden")
+      .text("a simple tooltip");
+
+  /*  var heat_map = div_heat_map
+        .append("svg")
+        .attr("height", (h1 + margin1.top + margin1.bottom))
+        .attr("width", (w1 + margin1.left + margin1.right)); */
+
+    var google_maps = div_google_maps
+        .append("svg")
+        .attr("height", (h2 + margin2.top + margin2.bottom))
+        .attr("width", (w2 + margin2.left + margin2.right));
+
+    var resume_day = div_resume_day
+        .append("svg")
+        .attr("height", (h3 + margin3.top + margin3.bottom))
+        .attr("width", (w3 + margin3.left + margin3.right));
+  }
+
+  //Define parsers
+  {
+    var parseUTCDateHour = d3.timeParse("%Y-%m-%dT%H:%M%Z");
+    var parseUTCDate = d3.timeParse("%Y-%m-%d");
+    var parseUTCDate2 = d3.timeParse("%W-%m-%Y");
+    var parseUTCDate_time = d3.timeParse("%Y-%m-%d-%H-%M");
+  }
+
+
+  // Define colors
+  {
+    var color_selected = "#2c7bb6";
+    var color_unselected = "#A0A0A0";
+    var color_received = "#00ccbc";
+    var color_sent =  "#2c7bb6";
+  }
+
+
+function read(file){
+  reader = new FileReader();
+  reader.onloadend = assign_file;
+  reader.readAsText(file[0])
+}
+
+function assign_file(){
+  json = JSON.parse(reader.result);
+  user_name = json.user;
+  main();
+}
+
+d3.json("heatmap_data_2.json", load_demo)
+
+function load_demo(json_file){
+  json = json_file;
+  main();
+}
+
+function main(){
+  drawCalendar();
+}
+
+
+function drawCalendar(){
+
+  var weeksInMonth = function(month){
+    var m = d3.timeMonth.floor(month)
+    return d3.timeWeeks(d3.timeWeek.floor(m), d3.timeMonth.offset(m,1)).length;
+  }
+
+/*  var minDate = d3.min(json, function(d) { return new Date(d.day) })
+  var maxDate = d3.max(json, function(d) { return new Date(d.day) }) */
+
+  var minDate = new Date(2017, 0,1)
+  var maxDate = new Date(2017, 11, 31)
+
+  var cellMargin = 2,
+      cellSize = 20;
+
+  var day = d3.timeFormat("%w"),
+      week = d3.timeFormat("%U"),
+      format = d3.timeFormat("%d-%m-%Y"),
+      titleFormat = d3.utcFormat("%a, %d-%b");
+      monthName = d3.timeFormat("%B"),
+      months= d3.timeMonth.range(d3.timeMonth.floor(minDate), maxDate);
+
+  var svg = div_heat_map.selectAll("svg")
+    .data(months)
+    .enter().append("svg")
+    .attr("class", "month")
+    .attr("height", ((cellSize * 7) + (cellMargin * 8) + 20) ) // the 20 is for the month labels
+    .attr("width", function(d) {
+      var columns = weeksInMonth(d);
+      return ((cellSize * columns) + (cellMargin * (columns + 1)));
+    })
+    .append("g")
+
+  svg.append("text")
+    .attr("class", "month-name")
+    .attr("y", (cellSize * 7) + (cellMargin * 8) + 15 )
+    .attr("x", function(d) {
+      var columns = weeksInMonth(d);
+      return (((cellSize * columns) + (cellMargin * (columns + 1))) / 2);
+    })
+    .attr("text-anchor", "middle")
+    .text(function(d) { return monthName(d); })
+
+  var rect = svg.selectAll("rect.day")
+    .data(function(d, i) { return d3.timeDays(d, new Date(d.getFullYear(), d.getMonth()+1, 1)); })
+    .enter().append("rect")
+    .attr("class", "day")
+    .attr("width", cellSize)
+    .attr("height", cellSize)
+    .attr("rx", 3).attr("ry", 3) // rounded corners
+    .attr("fill", '#eaeaea') // default light grey fill
+    .attr("y", function(d) { return (day(d) * cellSize) + (day(d) * cellMargin) + cellMargin; })
+    .attr("x", function(d) { return ((week(d) - week(new Date(d.getFullYear(),d.getMonth(),1))) * cellSize) + ((week(d) - week(new Date(d.getFullYear(),d.getMonth(),1))) * cellMargin) + cellMargin ; })
+    .on("mouseover", function(d) {
+      d3.select(this).classed('hover', true);
+
+      tooltip.style("visibility", "visible");
+       tooltip.transition()
+                   .duration(200)
+                   .style("opacity", .9);
+       tooltip.html(d)
+                   .style("left", (d3.event.pageX)+30 + "px")
+                   .style("top", (d3.event.pageY) + "px");
+    })
+    .on("mouseout", function(d) {
+      d3.select(this).classed('hover', false);
+      tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+    })
+    .datum(format);
+
+  rect.append("title")
+    .text(function(d) { return titleFormat(new Date(d)); });
+
+
+  var scale = d3.scaleLinear()
+    .domain(d3.extent(json.days, function(d) { return d.points_count; }))
+    .range([0.4,1]); // the interpolate used for color expects a number in the range [0,1] but i don't want the lightest part of the color scheme
+
+    json.days.forEach(function(d){
+      rect.filter(function(e) { return e == d.date; })
+        .style("fill",  d3.interpolatePuBu(scale(d.points_count)))
+        .select("title")
+        .text("hello");
+    })
+
+
+}
+
+
+  </script>
+
+</body>
+</html>
