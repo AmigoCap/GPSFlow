@@ -1,0 +1,31 @@
+{
+	"days" : [
+		{
+			"points_count" : 9875,
+			"segments" : [
+				{
+					"segment_id" : 0,
+					"points" : [
+						{
+							"point_id" : 0,
+							"timestampMs" : 178673984698,
+							"latitude" : 10,
+							"longitude" : 20,
+							"velocity" : 6374863
+						}
+					]
+				}
+			],
+			"staypoints" : [
+				{
+					"staypoint_id" : 0,
+					"timestampMs" : 178673984698,
+					"duration" : 6374863,
+					"latitude" : 10,
+					"longitude" : 20,
+					"address" : "10 Rue Général"
+				}
+			]
+		}
+	]
+}
