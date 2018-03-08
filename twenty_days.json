@@ -3,7 +3,7 @@
 		{
 			"date": "31-12-2017",
 			"points_count": 78,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -814,7 +814,7 @@
 		{
 			"date": "30-12-2017",
 			"points_count": 25,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -1085,7 +1085,7 @@
 		{
 			"date": "29-12-2017",
 			"points_count": 130,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -2411,7 +2411,7 @@
 		{
 			"date": "28-12-2017",
 			"points_count": 32,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -2767,7 +2767,7 @@
 		{
 			"date": "27-12-2017",
 			"points_count": 13,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -2913,7 +2913,7 @@
 		{
 			"date": "26-12-2017",
 			"points_count": 21,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -3144,7 +3144,7 @@
 		{
 			"date": "25-12-2017",
 			"points_count": 22,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -3380,7 +3380,7 @@
 		{
 			"date": "24-12-2017",
 			"points_count": 96,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -4361,7 +4361,7 @@
 		{
 			"date": "23-12-2017",
 			"points_count": 138,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -5792,7 +5792,7 @@
 		{
 			"date": "22-12-2017",
 			"points_count": 55,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -6388,7 +6388,7 @@
 		{
 			"date": "21-12-2017",
 			"points_count": 36,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -6794,7 +6794,7 @@
 		{
 			"date": "20-12-2017",
 			"points_count": 13,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -6940,7 +6940,7 @@
 		{
 			"date": "19-12-2017",
 			"points_count": 44,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -7426,7 +7426,7 @@
 		{
 			"date": "18-12-2017",
 			"points_count": 13,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -7572,7 +7572,7 @@
 		{
 			"date": "17-12-2017",
 			"points_count": 13,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -7718,7 +7718,7 @@
 		{
 			"date": "16-12-2017",
 			"points_count": 34,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -8084,7 +8084,7 @@
 		{
 			"date": "15-12-2017",
 			"points_count": 126,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -9375,7 +9375,7 @@
 		{
 			"date": "14-12-2017",
 			"points_count": 93,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -10371,7 +10371,7 @@
 		{
 			"date": "13-12-2017",
 			"points_count": 67,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
@@ -11082,7 +11082,7 @@
 		{
 			"date": "12-12-2017",
 			"points_count": 36,
-			"segment_id": [
+			"segments": [
 				{
 					"segment_id": 0,
 					"points": [
