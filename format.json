@@ -7,7 +7,6 @@
 					"segment_id" : 0,
 					"points" : [
 						{
-							"point_id" : 0,
 							"timestampMs" : 178673984698,
 							"latitude" : 10,
 							"longitude" : 20,
