@@ -27,7 +27,7 @@ def calcFirstSegmentation(lBoundiaries,whitened,bPadd):
     lFirstSpeedSegmentation=[[] for ii in range (len(lBoundiaries)-1)]
     for ii in range(len(whitened)):
         for jj in range(len(lBoundiaries)-1):
-            if whitened[ii][0]>lBoundiaries[jj] and whitened[ii][0]<lBoundiaries[jj+1]:
+            if whitened[ii][0]>=lBoundiaries[jj] and whitened[ii][0]<lBoundiaries[jj+1]:
                 lFirstSpeedSegmentation[jj].append(whitened[ii][1])
                 if bPadd:
                     for kk in range(jj+1,len(lFirstSpeedSegmentation)):
