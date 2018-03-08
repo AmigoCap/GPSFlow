@@ -1,6 +1,7 @@
 {
 	"days" : [
 		{
+			"date" : "D-M-Y",
 			"points_count" : 9875,
 			"segments" : [
 				{
