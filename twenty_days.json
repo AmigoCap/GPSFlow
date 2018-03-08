@@ -809,6 +809,36 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.863394623529416,
+					"longitude": 2.3547427529411764,
+					"entryTimeMs": "1514753575316",
+					"exiTimeMs": "1514750384000",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.86210482857142,
+					"longitude": 2.346508214285714,
+					"entryTimeMs": "1514749726000",
+					"exiTimeMs": "1514748857895",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.703445099999996,
+					"longitude": 2.071809,
+					"entryTimeMs": "1514746506158",
+					"exiTimeMs": "1514744902267",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.71009904,
+					"longitude": 2.0581419,
+					"entryTimeMs": "1514744462800",
+					"exiTimeMs": "1514737781000",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -1079,6 +1109,22 @@
 							"velocity": 0.0
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.70124022142857,
+					"longitude": 2.104481257142857,
+					"entryTimeMs": "1514653953182",
+					"exiTimeMs": "1514651791441",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.709949099999996,
+					"longitude": 2.05838245,
+					"entryTimeMs": "1514642097752",
+					"exiTimeMs": "1514637344000",
+					"address": "Unknown"
 				}
 			]
 		},
@@ -2406,6 +2452,29 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.71014883055557,
+					"longitude": 2.0582631624999994,
+					"entryTimeMs": "1514588103000",
+					"exiTimeMs": "1514552575000",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.70412490999999,
+					"longitude": 2.06945114,
+					"entryTimeMs": "1514550304000",
+					"exiTimeMs": "1514550003242",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.70514323333333,
+					"longitude": 2.0705967999999997,
+					"entryTimeMs": "1514550003242",
+					"exiTimeMs": "1514549829539",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -2762,6 +2831,43 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.715626525,
+					"longitude": 2.07025305,
+					"entryTimeMs": "1514501799341",
+					"exiTimeMs": "1514495788047",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.701335518181814,
+					"longitude": 2.104693954545454,
+					"entryTimeMs": "1514481765386",
+					"exiTimeMs": "1514480207755",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.70121074999999,
+					"longitude": 2.10493991875,
+					"entryTimeMs": "1514480207755",
+					"exiTimeMs": "1514478478921",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.704091219999995,
+					"longitude": 2.0697575999999995,
+					"entryTimeMs": "1514478099000",
+					"exiTimeMs": "1514478007000",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.7100879,
+					"longitude": 2.0583233,
+					"entryTimeMs": "1514477209000",
+					"exiTimeMs": "1514476471000",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -2907,6 +3013,15 @@
 							"velocity": 57.6367229665
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.71013947142857,
+					"longitude": 2.058248471428571,
+					"entryTimeMs": "1514413672000",
+					"exiTimeMs": "1514359323000",
+					"address": "Unknown"
 				}
 			]
 		},
@@ -3138,6 +3253,22 @@
 							"velocity": 0.0
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.70957861052631,
+					"longitude": 2.0607387894736844,
+					"entryTimeMs": "1514328202963",
+					"exiTimeMs": "1514316342351",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.71010181111111,
+					"longitude": 2.058320111111111,
+					"entryTimeMs": "1514310106000",
+					"exiTimeMs": "1514292172000",
+					"address": "Unknown"
 				}
 			]
 		},
@@ -3374,6 +3505,15 @@
 							"velocity": 0.0
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.71055486363637,
+					"longitude": 2.0602016000000005,
+					"entryTimeMs": "1514239666351",
+					"exiTimeMs": "1514206714000",
+					"address": "Unknown"
 				}
 			]
 		},
@@ -4355,6 +4495,22 @@
 							"velocity": 0.9120125852
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.76136196451613,
+					"longitude": 2.304609903225806,
+					"entryTimeMs": "1514115136397",
+					"exiTimeMs": "1514114362288",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.76255723639701,
+					"longitude": 2.2755367900735295,
+					"entryTimeMs": "1514113742405",
+					"exiTimeMs": "1514070292024",
+					"address": "Unknown"
 				}
 			]
 		},
@@ -5787,6 +5943,64 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 48.76253660434788,
+					"longitude": 2.2755353535117044,
+					"entryTimeMs": "1514069986956",
+					"exiTimeMs": "1514053137957",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.76235018571428,
+					"longitude": 2.305373785714286,
+					"entryTimeMs": "1514052848119",
+					"exiTimeMs": "1514052443377",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.7101967,
+					"longitude": 2.06319877,
+					"entryTimeMs": "1514050431123",
+					"exiTimeMs": "1514027557277",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.703333689999994,
+					"longitude": 2.07109328,
+					"entryTimeMs": "1514027121841",
+					"exiTimeMs": "1514024129243",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 48.7620840625,
+					"longitude": 2.3049163249999998,
+					"entryTimeMs": "1514022133289",
+					"exiTimeMs": "1514021012434",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 47.78954003684209,
+					"longitude": 3.6713063052631574,
+					"entryTimeMs": "1514016774648",
+					"exiTimeMs": "1514013399998",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.761771804000006,
+					"longitude": 4.826776147999999,
+					"entryTimeMs": "1514007516613",
+					"exiTimeMs": "1513994708000",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.75882029264705,
+					"longitude": 4.83337756764706,
+					"entryTimeMs": "1513994176000",
+					"exiTimeMs": "1513985178918",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -6383,6 +6597,57 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.758819500000016,
+					"longitude": 4.833361719230769,
+					"entryTimeMs": "1513983537777",
+					"exiTimeMs": "1513979371539",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.7618644672414,
+					"longitude": 4.826741556896552,
+					"entryTimeMs": "1513978887727",
+					"exiTimeMs": "1513952028324",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78385341875,
+					"longitude": 4.7688741875,
+					"entryTimeMs": "1513944949844",
+					"exiTimeMs": "1513940346414",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78393053333332,
+					"longitude": 4.770034922222222,
+					"entryTimeMs": "1513940346414",
+					"exiTimeMs": "1513934161129",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78760118499999,
+					"longitude": 4.775031055,
+					"entryTimeMs": "1513933856069",
+					"exiTimeMs": "1513932001732",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.783766299999996,
+					"longitude": 4.768273687500001,
+					"entryTimeMs": "1513931341725",
+					"exiTimeMs": "1513925185711",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.761888049999996,
+					"longitude": 4.8265912166666665,
+					"entryTimeMs": "1513923520000",
+					"exiTimeMs": "1513923402000",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -6789,6 +7054,57 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.76188156710098,
+					"longitude": 4.826693014332243,
+					"entryTimeMs": "1513896618069",
+					"exiTimeMs": "1513863175959",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.783815405882336,
+					"longitude": 4.7702539,
+					"entryTimeMs": "1513861576105",
+					"exiTimeMs": "1513854414000",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.783784000000004,
+					"longitude": 4.7690587454545454,
+					"entryTimeMs": "1513854414000",
+					"exiTimeMs": "1513847175639",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78364453333333,
+					"longitude": 4.768162333333333,
+					"entryTimeMs": "1513847175639",
+					"exiTimeMs": "1513846319260",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.76691410000001,
+					"longitude": 4.80491086,
+					"entryTimeMs": "1513845275193",
+					"exiTimeMs": "1513844798423",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.760090500000004,
+					"longitude": 4.82633418,
+					"entryTimeMs": "1513844798423",
+					"exiTimeMs": "1513844655429",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.76181269,
+					"longitude": 4.826756059999999,
+					"entryTimeMs": "1513844366023",
+					"exiTimeMs": "1513841518814",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -6934,6 +7250,15 @@
 							"velocity": 0.0
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.76187410406505,
+					"longitude": 4.826787700813005,
+					"entryTimeMs": "1513809622312",
+					"exiTimeMs": "1513728628558",
+					"address": "Unknown"
 				}
 			]
 		},
@@ -7421,6 +7746,57 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.761903779591854,
+					"longitude": 4.826804281632652,
+					"entryTimeMs": "1513724359831",
+					"exiTimeMs": "1513698062607",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78384978,
+					"longitude": 4.7702295999999995,
+					"entryTimeMs": "1513696568438",
+					"exiTimeMs": "1513695398144",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.7835183,
+					"longitude": 4.76774652,
+					"entryTimeMs": "1513695398144",
+					"exiTimeMs": "1513687837373",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78386595490194,
+					"longitude": 4.770148290196078,
+					"entryTimeMs": "1513687716443",
+					"exiTimeMs": "1513666502861",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78369985,
+					"longitude": 4.76843725,
+					"entryTimeMs": "1513666414182",
+					"exiTimeMs": "1513666149000",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.780311942857146,
+					"longitude": 4.803963785714286,
+					"entryTimeMs": "1513665105242",
+					"exiTimeMs": "1513664372000",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.76174626666667,
+					"longitude": 4.8267376625,
+					"entryTimeMs": "1513664246000",
+					"exiTimeMs": "1513651339111",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -7567,6 +7943,15 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.761828481690145,
+					"longitude": 4.826755149295773,
+					"entryTimeMs": "1513637862147",
+					"exiTimeMs": "1513599224149",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -7712,6 +8097,15 @@
 							"velocity": 0.0
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.76184421904763,
+					"longitude": 4.827124638095236,
+					"entryTimeMs": "1513551125765",
+					"exiTimeMs": "1513506675999",
+					"address": "Unknown"
 				}
 			]
 		},
@@ -8078,6 +8472,29 @@
 							"velocity": 0.0
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.76187381515152,
+					"longitude": 4.826674412121213,
+					"entryTimeMs": "1513464987205",
+					"exiTimeMs": "1513437338427",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.75824839736844,
+					"longitude": 4.835090331578948,
+					"entryTimeMs": "1513436664437",
+					"exiTimeMs": "1513433278173",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.76190242161016,
+					"longitude": 4.826663363983048,
+					"entryTimeMs": "1513432667176",
+					"exiTimeMs": "1513380016943",
+					"address": "Unknown"
 				}
 			]
 		},
@@ -9370,6 +9787,36 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.74070017317074,
+					"longitude": 4.818396143902437,
+					"entryTimeMs": "1513366726296",
+					"exiTimeMs": "1513363302876",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.761853889344216,
+					"longitude": 4.82667534590164,
+					"entryTimeMs": "1513362330000",
+					"exiTimeMs": "1513354372451",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78351790410629,
+					"longitude": 4.76815250966185,
+					"entryTimeMs": "1513351806864",
+					"exiTimeMs": "1513339835249",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.7618378418919,
+					"longitude": 4.826664056081072,
+					"entryTimeMs": "1513338358421",
+					"exiTimeMs": "1513292847411",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -10366,6 +10813,85 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.76185962108842,
+					"longitude": 4.826684546712025,
+					"entryTimeMs": "1513292391181",
+					"exiTimeMs": "1513255467367",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.7588907625,
+					"longitude": 4.822814875,
+					"entryTimeMs": "1513255207117",
+					"exiTimeMs": "1513254587347",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.759073699999995,
+					"longitude": 4.824955425,
+					"entryTimeMs": "1513254587347",
+					"exiTimeMs": "1513254121182",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78804135079365,
+					"longitude": 4.775510652380952,
+					"entryTimeMs": "1513253421343",
+					"exiTimeMs": "1513252026897",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.787791933333324,
+					"longitude": 4.775049558333334,
+					"entryTimeMs": "1513252026897",
+					"exiTimeMs": "1513251398846",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78730121249998,
+					"longitude": 4.774883490624999,
+					"entryTimeMs": "1513251398846",
+					"exiTimeMs": "1513250494546",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78798671081078,
+					"longitude": 4.775730127027027,
+					"entryTimeMs": "1513250494546",
+					"exiTimeMs": "1513249403031",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78373967499999,
+					"longitude": 4.770239164285714,
+					"entryTimeMs": "1513249092509",
+					"exiTimeMs": "1513247380355",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78436375365854,
+					"longitude": 4.768351634146342,
+					"entryTimeMs": "1513246589142",
+					"exiTimeMs": "1513235386000",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.780227116666666,
+					"longitude": 4.803891633333333,
+					"entryTimeMs": "1513234409299",
+					"exiTimeMs": "1513233667971",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.761791312031505,
+					"longitude": 4.826755015384618,
+					"entryTimeMs": "1513233135828",
+					"exiTimeMs": "1513206337114",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -11077,6 +11603,50 @@
 						}
 					]
 				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.76184856017889,
+					"longitude": 4.826717686577184,
+					"entryTimeMs": "1513205985636",
+					"exiTimeMs": "1513187594416",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.76686712,
+					"longitude": 4.80468784,
+					"entryTimeMs": "1513187207938",
+					"exiTimeMs": "1513186992683",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78393406153847,
+					"longitude": 4.770313623076923,
+					"entryTimeMs": "1513185212311",
+					"exiTimeMs": "1513178221420",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.784077704761884,
+					"longitude": 4.768645566666667,
+					"entryTimeMs": "1513178221420",
+					"exiTimeMs": "1513164752874",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.7836006898305,
+					"longitude": 4.767131759322035,
+					"entryTimeMs": "1513164298781",
+					"exiTimeMs": "1513151782768",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.761797458333334,
+					"longitude": 4.82670635,
+					"entryTimeMs": "1513150203000",
+					"exiTimeMs": "1513148504426",
+					"address": "Unknown"
+				}
 			]
 		},
 		{
@@ -11472,6 +12042,43 @@
 							"velocity": 0.1055164075
 						}
 					]
+				}
+			],
+			"staypoints": [
+				{
+					"latitude": 45.76188494893617,
+					"longitude": 4.826684136170211,
+					"entryTimeMs": "1513116468317",
+					"exiTimeMs": "1513084556205",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.783322375,
+					"longitude": 4.766812175,
+					"entryTimeMs": "1513083234854",
+					"exiTimeMs": "1513082563364",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78285094444444,
+					"longitude": 4.76814721111111,
+					"entryTimeMs": "1513082563364",
+					"exiTimeMs": "1513077552667",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.784022255555556,
+					"longitude": 4.769249744444444,
+					"entryTimeMs": "1513077043085",
+					"exiTimeMs": "1513073937024",
+					"address": "Unknown"
+				},
+				{
+					"latitude": 45.78356816842104,
+					"longitude": 4.768183173684208,
+					"entryTimeMs": "1513073937024",
+					"exiTimeMs": "1513061851836",
+					"address": "Unknown"
 				}
 			]
 		}
