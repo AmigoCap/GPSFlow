@@ -6,7 +6,7 @@ import gmplot
 import colors
 from sklearn.cluster import DBSCAN
 import geocoder
-
+from tqdm import tqdm
 
 
 def displayRawDay(day, complete_df, centerX=45.757589, centerY=4.831689, zoom=15) :
@@ -295,4 +295,5 @@ print(' Termine')
 lDays=list(set(df['date']))
 
 #displayRawDay(lDays[0],df)
-displayDay(lDays[0], df)
+for days in tqdm(lDays,desc="Traitement des différents jours"):
+    displayDay(lDays[0], df)
