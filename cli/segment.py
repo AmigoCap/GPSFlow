@@ -1,4 +1,5 @@
 import distance
+import numpy
 from sklearn.cluster import DBSCAN
 
 def fdistance(df, i, j) :
@@ -49,8 +50,8 @@ def findSegments(df, lower_limit, radius, max_outliers):
 
 			if total_time_in_st > 500:
 				# print("Time in st : " + str(total_time_in_st))
-				start_stay_points.append(start_index)
-				end_stay_points.append(end_index)
+				start_stay_points.append(numpy.clip(start_index, 0, df["timestampMs"].size - 1))
+				end_stay_points.append(numpy.clip(end_index, 0, df["timestampMs"].size - 1))
 			else:
 				# print("Not enough time in st : " + str(total_time_in_st))
 				continue

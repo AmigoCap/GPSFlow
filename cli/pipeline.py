@@ -31,26 +31,30 @@ def processDay(day, df) :
 	staypoint_outliers=5
 	small_points=5
 	small_distance=30
-	
+
 	# Select date
 	df = parser.selectDate(day, df)
 
 	# Apply filters
-	if df['date'].size > 3 :
-		df = filters.filterPerfectDuplicates(df)
+	df = filters.filterPerfectDuplicates(df)
+
+	if df['date'].size > 5 :
 		df = filters.filterByAngle(df, min_angle)
 		df = filters.filterBySpeed(df, max_speed)
 		df = filters.filterByMedian(df, n=median_window, min_delay=median_delay)
 
-	# Segments by stay point
-	segments, points = segment.findSegments(df, staypoint_limit, staypoint_radius, staypoint_outliers)
-	segments = segment.removeSmallSegments(segments, small_points, small_distance)
-	points = segment.groupPoints(points)
+		# Segments by stay point
+	if not df.empty :
+		segments, points = segment.findSegments(df, staypoint_limit, staypoint_radius, staypoint_outliers)
+		segments = segment.removeSmallSegments(segments, small_points, small_distance)
+		points = segment.groupPoints(points)
 
-	# Cleanup
-	segments = cleanupColumns(segments)
-	
-	return segments, points
+		# Cleanup
+		segments = cleanupColumns(segments)
+		
+		return segments, points
+	else :
+		return [], []
 
 def cleanupColumns(segments) :
 	for s in segments :

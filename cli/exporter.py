@@ -18,13 +18,16 @@ def createDayJson(date, segments, points) :
 	result += "\"points_count\":" + getPointsCount(segments) + ","
 	
 	# Segments
-	result += "\"segments\":["
-	for i in range(len(segments)) :
-		result += "{\"segment_id\":" + str(i) + ","
-		result += "\"points\":"
-		result += segments[i].to_json(path_or_buf=None, orient='records')
-		result += "},"
-	result = result[:-1] + "],"
+	if len(segments) == 0 :
+		result += "\"segments\":[],"
+	else :
+		result += "\"segments\":["
+		for i in range(len(segments)) :
+			result += "{\"segment_id\":" + str(i) + ","
+			result += "\"points\":"
+			result += segments[i].to_json(path_or_buf=None, orient='records')
+			result += "},"
+		result = result[:-1] + "],"
 	
 	# Stay points
 	result += "\"staypoints\":"
