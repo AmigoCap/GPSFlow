@@ -21,7 +21,7 @@ def getBoundiaries(lK):
     lBoundiaries=[0]
     for ii in range (len(lK)-1):
         lBoundiaries.append((lK[ii]+lK[ii+1])/2)
-    lBoundiaries.append(100)
+    lBoundiaries.append(1000)
     return lBoundiaries
 
 def calcFirstSegmentation(lBoundiaries,whitened,bPadd):
