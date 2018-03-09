@@ -295,17 +295,17 @@ def removeSmallSegments(segments, nb_points, min_dist) :
 
 def prepareDataKMeans(lSegments):
     for segment in lSegments:
-        segment['distance'] = distance.getDistances(segment)
-        segment['velocity'] = distance.getVelocities(segment)
+        segment['dist'] = speedClass.getDistances(segment)
+        segment['vel'] = speedClass.getVelocities(segment)
         segment['speedClass'] = speedClass.initSpeedClass(segment)
         segment['numSC'] = speedClass.initSpeedClass(segment)
     return lSegments
 
 def fullSpeedSegmentation(lSegments):
     for segment_mouvement in lSegments:
-        if len(segment_mouvement['velocity'])>2:
+        if len(segment_mouvement['vel'])>2:
             (lK,whitened)=speedClass.applyKMeans(segment_mouvement,
-                                                 k=int(len(segment_mouvement['velocity'])/10)+1)
+                                                 k=int(len(segment_mouvement['vel'])/10)+1)
 
             lBoundiaries=speedClass.getBoundiaries(lK)
             lFirstSpeedSegmentation=speedClass.calcFirstSegmentation(lBoundiaries,whitened,bPadd=False)
