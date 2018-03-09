@@ -84,3 +84,14 @@ def initSpeedClass(df) :
         accelerations.append(-1)
     accelerations.append(-1)
     return accelerations
+
+
+def cancelWhithen(lFirstSpeedSegmentation,segment_mouvement):
+    nwSeg=[]
+    c=0
+    for wSeg in lFirstSpeedSegmentation:
+        nwSeg.append([])
+        for ele in wSeg:
+            nwSeg[-1].append(segment_mouvement.velocity[c])
+            c+=1
+    return nwSeg
