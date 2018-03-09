@@ -356,11 +356,10 @@ def generateJson(complete_df) :
     days = getUniqueDays(complete_df)
     result = "{ \"days\" : ["
 
-    for i in range(len(days)) :
+    for i in tqdm(range(len(days)),'Processing days') :
         segments, points = pipeline(days[i], complete_df)
         result += createDayJson(days[i], segments, points)
         result += ","
-        print ("... Day " + str(i) + "/" + str(len(days)))
 
     result = result[:-1] + "]}"
 
@@ -407,19 +406,23 @@ if __name__ == "__main__" :
         filepath = str(sys.argv[1])
 
         if os.path.isfile(filepath) and filepath.endswith('.json'):
-            print("Import Json...")
+            print("Import Json... ", sep=' ', end = '', flush = True)
             android_df = parser.importJson(filepath)
             print("Done !")
 
-            print("Process trajectories...")
+            # print("Process trajectories...", sep=' ', end = '', flush = True)
             json = generateJson(android_df)
-            print("Done !")
+            # print(" Done !")
 
-            print("Write to output.json...")
+            print("Write to output.json...", sep=' ', end = '', flush = True)
             file = open("output.json", "w")
             file.write(json)
             file.close()
-            print("Done !")
+            print(" Done !")
+
+            print(' ')
+            print("The processing is done. The data is ready for visualisation !")
+            print(' ')
 
         elif not filepath.endswith('.json') :
             print("File must be in JSON format.")
