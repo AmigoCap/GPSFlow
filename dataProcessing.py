@@ -295,17 +295,17 @@ def removeSmallSegments(segments, nb_points, min_dist) :
 
 def prepareDataKMeans(lSegments):
     for segment in lSegments:
-        segment['dist'] = speedClass.getDistances(segment)
-        segment['vel'] = speedClass.getVelocities(segment)
+        segment['distance'] = distance.getDistances(segment)
+        segment['velocity'] = distance.getVelocities(segment)
         segment['speedClass'] = speedClass.initSpeedClass(segment)
         segment['numSC'] = speedClass.initSpeedClass(segment)
     return lSegments
 
 def fullSpeedSegmentation(lSegments):
     for segment_mouvement in lSegments:
-        if len(segment_mouvement['vel'])>2:
+        if len(segment_mouvement['velocity'])>3:
             (lK,whitened)=speedClass.applyKMeans(segment_mouvement,
-                                                 k=int(len(segment_mouvement['vel'])/10)+1)
+                                                 k=int(len(segment_mouvement['velocity'])/10)+1)
 
             lBoundiaries=speedClass.getBoundiaries(lK)
             lFirstSpeedSegmentation=speedClass.calcFirstSegmentation(lBoundiaries,whitened,bPadd=False)
@@ -343,11 +343,11 @@ def pipeline(day, complete_df) :
     segments, points = findSegments(df_med, sp_min, sp_radius, sp_outliers)
     segments = removeSmallSegments(segments, 5, 30)
     points = groupPoints(points)
-    segments = cleanupColumns(segments)
 
     segments=prepareDataKMeans(segments)
     segments=fullSpeedSegmentation(segments)
 
+    segments = cleanupColumns(segments)
 
     return segments, points
 
