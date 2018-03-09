@@ -345,6 +345,10 @@ def pipeline(day, complete_df) :
     points = groupPoints(points)
     segments = cleanupColumns(segments)
 
+    segments=prepareDataKMeans(segments)
+    segments=fullSpeedSegmentation(segments)
+
+
     return segments, points
 
 def generateJson(complete_df) :
