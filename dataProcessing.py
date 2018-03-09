@@ -270,9 +270,10 @@ def cleanupColumns(segments) :
         s['ts'] = s['timestampMs']
         s['lat'] = s['latitude']
         s['lng'] = s['longitude']
+        s['speed'] = s['speedClass']
 
-    #columns = ["timestampMs", "latitude", "longitude", "date", "time", "delay", "distance", "velocity"]
-    columns = ["ts", "lat", "lng"]
+    #columns = ["timestampMs", "latitude", "longitude", "date", "time", "delay", "distance", "velocity","speedClass","numSC"]
+    columns = ["ts", "lat", "lng","speed","numSC"]
     for s in segments :
         for col in list(s) :
             if col not in columns :
