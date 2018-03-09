@@ -36,10 +36,11 @@ def processDay(day, df) :
 	df = parser.selectDate(day, df)
 
 	# Apply filters
-	df = filters.filterPerfectDuplicates(df)
-	df = filters.filterByAngle(df, min_angle)
-	df = filters.filterBySpeed(df, max_speed)
-	df = filters.filterByMedian(df, n=median_window, min_delay=median_delay)
+	if df['date'].size > 3 :
+		df = filters.filterPerfectDuplicates(df)
+		df = filters.filterByAngle(df, min_angle)
+		df = filters.filterBySpeed(df, max_speed)
+		df = filters.filterByMedian(df, n=median_window, min_delay=median_delay)
 
 	# Segments by stay point
 	segments, points = segment.findSegments(df, staypoint_limit, staypoint_radius, staypoint_outliers)
