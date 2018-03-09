@@ -1,9 +1,10 @@
 from scipy.cluster.vq import vq,kmeans,whiten
 import numpy as np
+import distance
 
 def applyKMeans(seg,k):
     lV=[]
-    for ii, v in enumerate(seg['velocity']):
+    for ii, v in enumerate(seg['vel']):
         lV.append([float(ii),v])
 
     features  = np.array(lV)
@@ -78,7 +79,7 @@ def agglomerateSpeedSegments(lFirstSpeedSegmentation,lowThreshold,highThreshold,
     return (l,a)
 
 def initSpeedClass(df) :
-    size = df['velocity'].size
+    size = df['vel'].size
     accelerations = []
     for i in range(size - 1):
         accelerations.append(-1)
@@ -92,6 +93,54 @@ def cancelWhithen(lFirstSpeedSegmentation,segment_mouvement):
     for wSeg in lFirstSpeedSegmentation:
         nwSeg.append([])
         for ele in wSeg:
-            nwSeg[-1].append(segment_mouvement.velocity[c])
+            nwSeg[-1].append(segment_mouvement.vel[c])
             c+=1
     return nwSeg
+
+
+
+def getDistances(df):
+    size = df['ts'].size
+    distances = []
+    for i in range(size - 1):
+        distances.append(distance.haversineDistance(
+            df["lng"][i],
+            df["lat"][i],
+            df["lng"][i+1],
+            df["lat"][i+1]))
+
+    distances.append(0)
+
+    return distances
+
+def computeVelocity(dist, t1, t2):
+    v1 = (dist) / ((float(t2)-float(t1))*pow(10, -3))
+    v2 = v1 * 3.6
+    return v2
+
+def getVelocities(df):
+    size = df['ts'].size
+    velocities = []
+    for i in range(size - 1):
+        velocities.append(computeVelocity(
+            df["dist"][i],
+            df["ts"][i+1],
+            df["ts"][i]
+        ))
+    velocities.append(0)
+
+    return velocities
+
+def getAccelerations(df) :
+    size = df['ts'].size
+    accelerations = []
+    for i in range(size - 1):
+        accelerations.append(computeVelocity(
+            df["vel"][i],
+            df["ts"][i+1],
+            df["ts"][i]
+        ))
+
+    accelerations.append(0)
+
+    return accelerations
