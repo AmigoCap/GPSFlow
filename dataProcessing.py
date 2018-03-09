@@ -10,6 +10,7 @@ from tqdm import tqdm
 import json
 import sys
 import os.path
+import speedClassification as speedClass
 
 def filterPerfectDuplicates(df):
     size = df['date'].size
@@ -291,6 +292,39 @@ def removeSmallSegments(segments, nb_points, min_dist) :
                 k-=1
         k+=1
     return segments
+
+def prepareDataKMeans(lSegments):
+    for segment in lSegments:
+        segment['distance'] = distance.getDistances(segment)
+        segment['velocity'] = distance.getVelocities(segment)
+        segment['speedClass'] = speedClass.initSpeedClass(segment)
+        segment['numSC'] = speedClass.initSpeedClass(segment)
+    return lSegments
+
+def fullSpeedSegmentation(lSegments):
+    for segment_mouvement in lSegments:
+        if len(segment_mouvement['velocity'])>2:
+            (lK,whitened)=speedClass.applyKMeans(segment_mouvement,
+                                                 k=int(len(segment_mouvement['velocity'])/10)+1)
+
+            lBoundiaries=speedClass.getBoundiaries(lK)
+            lFirstSpeedSegmentation=speedClass.calcFirstSegmentation(lBoundiaries,whitened,bPadd=False)
+            lFirstSpeedSegmentation=speedClass.cancelWhithen(lFirstSpeedSegmentation,segment_mouvement)
+            (speedAgglomerates,a)=speedClass.agglomerateSpeedSegments(lFirstSpeedSegmentation,
+                                                                      lowThreshold=8,
+                                                                      highThreshold=40,bMedian=False)
+            offset=0
+            lSpeedClass=[]
+            numSC=[]
+            for ii, plots in enumerate(speedAgglomerates):
+                for jj, speed in enumerate(plots):
+                    lSpeedClass.append(a[ii])
+                    numSC.append(ii)
+                offset+=jj
+            segment_mouvement['speedClass']=lSpeedClass
+            segment_mouvement['numSC']=numSC
+    return lSegments
+
 
 def pipeline(day, complete_df) :
     min_angle=15
