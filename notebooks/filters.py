@@ -108,8 +108,8 @@ def medianFilter(df, n=2, replace=False):
 		data['latitude']=lat_filtered
 		data['longitude']=long_filtered
 	else:
-		data['lat_mean_filt']=lat_filtered
-		data['lng_mean_filt']=long_filtered
+		data['lat_med_filt']=lat_filtered
+		data['lng_med_filt']=long_filtered
 
 	return data
 
@@ -147,7 +147,6 @@ def errorDistances(data, filt_lat_name, filt_lng_name):
 
 def sumErrorDistance(data, filt_lat_name, filt_lng_name):
 	return sum(errorDistances(data, filt_lat_name, filt_lng_name))
-
 
 
 ## filtrage par segment
@@ -203,8 +202,6 @@ def filterBySegment(input_data, limite):
 	data['distance'] = distance.getDistances(data)
 	data['velocity'] = distance.getVelocities(data)
 	data['acceleration'] = distance.getAccelerations(data)
-
-
 	return data
 
 
