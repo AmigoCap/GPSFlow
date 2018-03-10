@@ -14,7 +14,9 @@ Deselect everything but 'Location History' and click download. Google may ask fo
 
 3. Rename it to `takout.json` and place it into the `cli` folder of the project
 
-4. Using your terminal, navigate to the `cli` folder and run the command `python main.py takout.json`
+4. Using your terminal, navigate to the `cli` folder and run the command 
+
+```python main.py takout.json```
 
 5. Your GPS data will be parsed, filtered and analysed. It can take a while (up to 15min). Let it run until everything is done.
 
