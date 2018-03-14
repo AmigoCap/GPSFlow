@@ -8,7 +8,7 @@
 git clone https://github.com/AmigoCap/GPSFlow
 ```
 
-2. Install all modules listed in `requirements.txt`
+2. Install all modules listed in `pipeline/requirements.txt`
 
 3. Download your Google Takout Location History [here](https://takeout.google.com/settings/takeout)
 
@@ -16,7 +16,7 @@ git clone https://github.com/AmigoCap/GPSFlow
 - Google may ask for your password and you will download a `.zip`. 
 - Unzipp it and find the `.json` file, which contains all the GPS data collected by Google Maps.
 
-4. Rename it to `takout.json` and place it into the `pipelien/src/` folder of the project
+4. Rename it to `takout.json` and place it into the `pipeline/src/` folder of the project
 
 5. Using your terminal, navigate to the `pipelien/src/` folder and run the following command :
 
@@ -26,7 +26,7 @@ python main.py takout.json
 
 6. Your GPS data will be parsed, filtered and analysed. It can take a while (up to 15min). Let it run until everything is done.
 
-7. Once the programm is finished, if everything went well, you should have a file called `output.json` inside the `cli` folder.
+7. Once the programm is finished, if everything went well, you should have a file called `output.json` inside the `src/` folder.
 
 8. Use the vizualisation tool to display the output in your navigator.
 
@@ -50,7 +50,7 @@ pyinstaller --onefile --additional-hooks-dir=hooks --name=gpsflow ../src/main.py
 
 5. The compiled file is inside `dist/`
 
-6. To execute it
+6. To execute it, run
 
 ```
 cd dist
@@ -61,3 +61,9 @@ And then
 ```
 gpsflow <path_to_takout.json>
 ```
+
+7. Your GPS data will be parsed, filtered and analysed. It can take a while (up to 15min). Let it run until everything is done.
+
+8. Once the programm is finished, if everything went well, you should have a new file called `output.json`.
+
+9. Use the vizualisation tool to display the output in your navigator.
