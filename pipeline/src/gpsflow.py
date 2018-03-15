@@ -36,7 +36,12 @@ if __name__ == "__main__" :
 			print("Could not find this file.")
 	
 	else :
-		print("Run the command : main.py <path/to/takout.json>")
-		print("If you don't have your takout.json, download it here")
+		print()
+		print("How to use :")
+		print()
+		print("    ./gpsflow <path_to_takout.json>")
+		print()
+		print("If you don't have your takout.json file, download it here :")
 		print("https://takeout.google.com/settings/takeout")
-		print("All you need is 'Location History'")
+		print("Only download your 'Location History'")
+		print()

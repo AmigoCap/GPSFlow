@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['../src/main.py'],
+a = Analysis(['../src/gpsflow.py'],
              pathex=['/Users/roland/Code/GPSFlow/pipeline/build-mac'],
              binaries=[],
              datas=[],
