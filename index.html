@@ -29,10 +29,18 @@
 			font-family: Arial, Helvetica;
 		}
 
-    .year-name {
+		.year-name {
 			font-size: 200%;
 			fill: #777;
 			font-family: Arial, Helvetica;
+		}
+
+		.arrow {
+			cursor: pointer;
+		}
+
+		.day {
+			cursor: pointer;
 		}
 
 		.day.hover {
@@ -302,7 +310,6 @@
 
 		// Define div, svg, etc..
 		{
-
 			var body = d3.select("body");
 
 			var tooltip = body
@@ -354,7 +361,7 @@
 
 		function assign_file() {
 			json = JSON.parse(reader.result);
-      var min_year = d3.min(json.days, function(d) { return d.date.substr(6, 10) })
+			var min_year = d3.min(json.days, function (d) { return d.date.substr(6, 10) })
 			update(min_year);
 		}
 
@@ -362,75 +369,75 @@
 
 		function load_demo(json_file) {
 			json = json_file;
-      var min_year = d3.min(json.days, function(d) { return d.date.substr(6, 10) })
+			var min_year = d3.min(json.days, function (d) { return d.date.substr(6, 10) })
 			main(min_year);
 		}
 
 		function main(year) {
-      draw_selector_calendar(year);
+			draw_selector_calendar(year);
 			drawCalendar(year);
 		}
 
-		function update(year){
+		function update(year) {
 			div_heat_map.selectAll(".month").remove();
-      div_heat_map.selectAll(".selector").remove();
-      draw_selector_calendar(year);
+			div_heat_map.selectAll(".selector").remove();
+			draw_selector_calendar(year);
 			drawCalendar(year);
 		}
 
-    function draw_selector_calendar(year)
-    {
-      var min_year = d3.min(json.days, function(d) { return d.date.substr(6, 10) })
-      var max_year = d3.max(json.days, function(d) { return d.date.substr(6, 10) })
+		function draw_selector_calendar(year) {
+			var min_year = d3.min(json.days, function (d) { return d.date.substr(6, 10) })
+			var max_year = d3.max(json.days, function (d) { return d.date.substr(6, 10) })
 
-      var current_year = year
+			var current_year = year
 
-      var height = h1/5
-      var width = (w1/51)
+			var height = h1 / 5
+			var width = (w1 / 51)
 
-      var svg = div_heat_map.append("svg")
-                            .attr("class", "selector")
-                            .attr("height", h1)
-                            .attr("width", (w1/17)*1.5)
+			var svg = div_heat_map.append("svg")
+				.attr("class", "selector")
+				.attr("height", h1)
+				.attr("width", (w1 / 17) * 1.5)
 
-      year_display = svg.append("text")
-                        .attr('x', width*2)
-                        .attr('y', h1/3)
-                        .attr("text-anchor", "middle")
-                        .attr("class", "year-name")
-                        .text(current_year)
-
-
-      var before = svg.append("g")
-                            .attr("transform", "translate(" + width*2 + "," + h1/2 + ")")
-                            .append("path")
-                            .attr("d", "M 0 " + 0 + " L " + 0 + " " + (height) + "L " + (-width) + " " + (height/2) + " Z")
-                            .style("fill", "#023858")
-                            .on('click',function(){
-                            if ( (current_year - 1) >= min_year){
-                              current_year = +current_year - 1
-                              div_heat_map.selectAll(".month").remove();
-                              drawCalendar(current_year)
-                              year_display.text(current_year)
-                            }});
-
-      var after = svg.append("g")
-                      .attr("transform", "translate(" + (width*2 + 10) + "," + h1/2 + ")")
-                      .append("path")
-                      .attr("d", "M 0 " + 0 + " L " + 0 + " " + (height) + "L " + (width) + " " + (height/2) + " Z")
-                      .style("fill", "#023858")
-                      .on('click',function(){
-                      if ( (current_year + 1) <= max_year){
-                        current_year = +current_year + 1
-                        div_heat_map.selectAll(".month").remove();
-                        drawCalendar(current_year)
-                        year_display.text(current_year)
-                      }})
+			year_display = svg.append("text")
+				.attr('x', width * 2)
+				.attr('y', h1 / 3)
+				.attr("text-anchor", "middle")
+				.attr("class", "year-name")
+				.text(current_year)
 
 
+			var before = svg.append("g")
+				.attr("transform", "translate(" + width * 2 + "," + h1 / 2 + ")")
+				.append("path")
+				.attr("d", "M 0 " + 0 + " L " + 0 + " " + (height) + "L " + (-width) + " " + (height / 2) + " Z")
+				.attr("class", "arrow")
+				.style("fill", "#023858")
+				.on('click', function () {
+					if ((current_year - 1) >= min_year) {
+						current_year = +current_year - 1
+						div_heat_map.selectAll(".month").remove();
+						drawCalendar(current_year)
+						year_display.text(current_year)
+					}
+				});
 
+			var after = svg.append("g")
+				.attr("transform", "translate(" + (width * 2 + 10) + "," + h1 / 2 + ")")
+				.append("path")
+				.attr("d", "M 0 " + 0 + " L " + 0 + " " + (height) + "L " + (width) + " " + (height / 2) + " Z")
+				.attr("class", "arrow")
+				.style("fill", "#023858")
+				.on('click', function () {
+					if ((current_year + 1) <= max_year) {
+						current_year = +current_year + 1
+						div_heat_map.selectAll(".month").remove();
+						drawCalendar(current_year)
+						year_display.text(current_year)
+					}
+				})
 
-    }
+		}
 
 		function drawCalendar(year) {
 
@@ -443,7 +450,7 @@
 			var maxDate = new Date(+year, 11, 31)
 
 			var cellMargin = 2,
-				cellSize = (w1)/(17*5);
+				cellSize = (w1) / (17 * 5);
 
 			var day = d3.timeFormat("%w"),
 				week = d3.timeFormat("%U"),
@@ -517,8 +524,7 @@
 					.text("hello");
 			})
 		}
-
-
 	</script>
 </body>
+
 </html>
