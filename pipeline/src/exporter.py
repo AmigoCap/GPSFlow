@@ -11,6 +11,7 @@ def generateJson(data) :
 	return result
 
 def createDayJson(date, segments, points) :
+
 	result = "{"
 
 	# Date and points_count
@@ -31,7 +32,7 @@ def createDayJson(date, segments, points) :
 	
 	# Stay points
 	result += "\"staypoints\":"
-	result += json.dumps(str(points))
+	result += json.dumps(points)
 	result += "}"
 	
 	return result

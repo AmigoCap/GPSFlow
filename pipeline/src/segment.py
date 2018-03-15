@@ -66,7 +66,7 @@ def findSegments(df, lower_limit, radius, max_outliers):
 		segments.append(s.reset_index(drop=True))
 
 		for i in range(len(end_stay_points) - 1):
-			s = df[end_stay_points[i] - 1: start_stay_points[i + 1] + 1]
+			s = df[end_stay_points[i] - 1 : start_stay_points[i + 1] + 1]
 			segments.append(s.reset_index(drop=True))
 
 		s = df[end_stay_points[len(end_stay_points) - 1]:]
@@ -77,9 +77,15 @@ def findSegments(df, lower_limit, radius, max_outliers):
 			lat=0
 			lng=0
 			for k in range(start_stay_points[i], end_stay_points[i]):
-				lat+=df["latitude"][k]/(end_stay_points[i]-start_stay_points[i])
-				lng+=df["longitude"][k]/(end_stay_points[i]-start_stay_points[i])
-			points.append({"lat":lat, "lng":lng, "start":df["timestampMs"][start_stay_points[i]], "end":df["timestampMs"][end_stay_points[i]], "addr":"Unknown"})
+				lat += df["latitude"][k]/(end_stay_points[i]-start_stay_points[i])
+				lng += df["longitude"][k]/(end_stay_points[i]-start_stay_points[i])
+
+			points.append({
+					"lat" : float(lat), 
+					"lng" : float(lng), 
+					"start" : int(df["timestampMs"][start_stay_points[i]]), 
+					"end" : int(df["timestampMs"][end_stay_points[i]]), 
+					"addr" : "Unknown"})
 	
 		return segments, points
 
@@ -112,7 +118,7 @@ def groupPoints(points, epsilon=150, min_samples=1) :
 				count+=1
 		for i in range(len(points)):
 			if labels[i]==current_label:
-				points[i]["label"] = current_label
+				points[i]["label"] = int(current_label)
 				points[i]["lat"] = lat_sum/count
 				points[i]["lng"] = lng_sum/count
 			
@@ -124,7 +130,11 @@ def removeSmallSegments(segments, nb_points, min_dist) :
 		if len(segments[k])<nb_points:
 			total_dist=0
 			for i in range(1, len(segments[k])):
-				total_dist+=distance.haversineDistance(segments[k]["longitude"][i-1], segments[k]["latitude"][i-1], segments[k]["longitude"][i], segments[k]["latitude"][i])
+				total_dist+=distance.haversineDistance(
+									segments[k]["longitude"][i-1], 
+									segments[k]["latitude"][i-1], 
+									segments[k]["longitude"][i], 
+									segments[k]["latitude"][i])
 			if total_dist<min_dist:
 				segments.pop(k)
 				k-=1

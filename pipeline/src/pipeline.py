@@ -1,6 +1,7 @@
 import parser
 import filters
 import segment
+import transport
 
 def process(df) :
 	days = getUniqueDays(df)
@@ -49,6 +50,9 @@ def processDay(day, df) :
 		segments = segment.removeSmallSegments(segments, small_points, small_distance)
 		points = segment.groupPoints(points)
 
+		segments = transport.prepareDataKMeans(segments)
+		segments = transport.fullSpeedSegmentation(segments)
+
 		# Cleanup
 		segments = cleanupColumns(segments)
 		
@@ -61,8 +65,9 @@ def cleanupColumns(segments) :
 		s['ts'] = s['timestampMs']
 		s['lat'] = s['latitude']
 		s['lng'] = s['longitude']
+		s['speed'] = s['speedClass']
 
-	columns = ["ts", "lat", "lng"]
+	columns = ["ts", "lat", "lng", "speed", "numSC"]
 	for s in segments :
 		for col in list(s) :
 			if col not in columns :
