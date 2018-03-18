@@ -188,7 +188,7 @@
 		<div id="wrapper">
 		<div id="google_maps" style="display: inline-block; vertical-align:top; "></div>
 		<div id="over_map">
-			<input onclick="removeLine();" type=button value="Raw Day">
+			<input onclick="showHideRaw();" type=button value="Raw Day">
 		</div>
 		</div>
 		<div id="resume_day" style="display: inline-block;"></div>
@@ -370,7 +370,7 @@
         var rawPath;
         var aColors=['#228B22','#FFA500','#FF0000'];
         var aMarkers=[];
-
+		var rawShown=false;
 
 		function read(file) {
 			reader = new FileReader();
@@ -640,6 +640,17 @@
                 aPaths[i].setMap(null);
             }
 			aPaths=[]
+        }
+
+        function showHideRaw() {
+		    console.log(rawShown)
+		    if(!rawShown){
+		        addRawPath()
+			}
+			else{
+		        removeRawPath()
+			}
+			rawShown=!rawShown;
         }
 
         function removeMarkers(){
