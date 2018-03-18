@@ -164,6 +164,8 @@
 		#map {
 			height: 100%;
 		}
+		#wrapper { position: relative; }
+		#over_map { position: absolute; top: 70px; left: 10px; z-index: 99; }
 
 	</style>
 </head>
@@ -183,7 +185,12 @@
 			</li>
 		</ul>
 		<div id="heat_map" style="display: inline-block; vertical-align:top;"></div>
+		<div id="wrapper">
 		<div id="google_maps" style="display: inline-block; vertical-align:top; "></div>
+		<div id="over_map">
+			<input onclick="removeLine();" type=button value="Raw Day">
+		</div>
+		</div>
 		<div id="resume_day" style="display: inline-block;"></div>
 	</div>
 
