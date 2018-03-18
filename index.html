@@ -518,6 +518,9 @@
 						.duration(500)
 						.style("opacity", 0);
 				})
+				.on("click",function(d){
+					drawDayData(json.days.filter(function (e) {return d==e.date}))
+				})
 				.datum(format);
 
 			rect.append("title")
@@ -538,111 +541,12 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('google_maps'), {
-                zoom: 13,
+                zoom: 4,
                 center: {lat: 45.74793377391304, lng: 4.829102304347825},
                 mapTypeId: 'terrain'
             });
-
-            var dayData= [{ "date" : "28-09-2017", "points_count" : 91,"segments" : [
-                    { "segment_id" : 0, "points" :
-                            [{"numSC":0,"ts":"1506623178000","lat":45.7481706,"lng":4.8289398,"speed":0},
-                                {"numSC":0,"ts":"1506623162000","lat":45.74844,"lng":4.8285813,"speed":0},
-                                {"numSC":0,"ts":"1506623143000","lat":45.7485892,"lng":4.8285662,"speed":0},
-                                {"numSC":0,"ts":"1506623104700","lat":45.7485892,"lng":4.8283624,"speed":0},
-                                {"numSC":0,"ts":"1506623095100","lat":45.7486056,"lng":4.8279821,"speed":0},
-                                {"numSC":0,"ts":"1506623079107","lat":45.7486882,"lng":4.8277604,"speed":0}]
-                    },
-                    { "segment_id" : 1, "points" :
-                            [{"numSC":0,"ts":"1506623000700","lat":45.7488973,"lng":4.8272544,"speed":1},
-                                {"numSC":0,"ts":"1506622985107","lat":45.7489785,"lng":4.8269855,"speed":1},
-                                {"numSC":0,"ts":"1506622945707","lat":45.7597782,"lng":4.8268171,"speed":1},
-                                {"numSC":0,"ts":"1506622266847","lat":45.760037,"lng":4.8258987,"speed":1},
-                                {"numSC":1,"ts":"1506622226539","lat":45.7597782,"lng":4.8263159,"speed":0},
-                                {"numSC":1,"ts":"1506622205090","lat":45.7601668,"lng":4.8265596,"speed":0},
-                                {"numSC":1,"ts":"1506622183696","lat":45.7602686,"lng":4.8265664,"speed":0},
-                                {"numSC":1,"ts":"1506622155700","lat":45.7607217,"lng":4.8266696,"speed":0},
-                                {"numSC":1,"ts":"1506622122860","lat":45.7607548,"lng":4.8266696,"speed":0},
-                                {"numSC":1,"ts":"1506622101331","lat":45.7610494,"lng":4.8266696,"speed":0},
-                                {"numSC":1,"ts":"1506622081142","lat":45.7614994,"lng":4.8264181,"speed":0}]
-                    },
-                    { "segment_id" : 2, "points" :
-                            [{"numSC":0,"ts":"1506607056000","lat":45.7616757,"lng":4.8267934,"speed":0},
-                                {"numSC":0,"ts":"1506606995723","lat":45.761134,"lng":4.8266209,"speed":0},
-                                {"numSC":0,"ts":"1506606959286","lat":45.7611002,"lng":4.8265573,"speed":0},
-                                {"numSC":0,"ts":"1506606939225","lat":45.7609233,"lng":4.8265573,"speed":0},
-                                {"numSC":0,"ts":"1506606917862","lat":45.7607341,"lng":4.8265573,"speed":0},
-                                {"numSC":0,"ts":"1506606900775","lat":45.7602299,"lng":4.8265688,"speed":0},
-                                {"numSC":0,"ts":"1506606880685","lat":45.7602299,"lng":4.8265573,"speed":0},
-                                {"numSC":0,"ts":"1506606864346","lat":45.7602299,"lng":4.8263817,"speed":0},
-                                {"numSC":0,"ts":"1506606596938","lat":45.7669487,"lng":4.8055096,"speed":0},
-                                {"numSC":0,"ts":"1506606527826","lat":45.7669487,"lng":4.8055003,"speed":0},
-                                {"numSC":0,"ts":"1506606325122","lat":45.7669487,"lng":4.8050776,"speed":0},
-                                {"numSC":1,"ts":"1506606285043","lat":45.7658002,"lng":4.8013041,"speed":1},
-                                {"numSC":1,"ts":"1506606265026","lat":45.7654914,"lng":4.8010209,"speed":1},
-                                {"numSC":1,"ts":"1506606244306","lat":45.7654914,"lng":4.8001218,"speed":1},
-                                {"numSC":1,"ts":"1506606224269","lat":45.7658002,"lng":4.7998386,"speed":1},
-                                {"numSC":1,"ts":"1506606184197","lat":45.7685513,"lng":4.7979551,"speed":1},
-                                {"numSC":1,"ts":"1506606164191","lat":45.7739563,"lng":4.7976143,"speed":1},
-                                {"numSC":1,"ts":"1506606144186","lat":45.7739563,"lng":4.797012,"speed":1},
-                                {"numSC":1,"ts":"1506606083563","lat":45.7739563,"lng":4.7965169,"speed":1},
-                                {"numSC":2,"ts":"1506606063528","lat":45.7737451,"lng":4.7947841,"speed":0},
-                                {"numSC":2,"ts":"1506606021176","lat":45.7735902,"lng":4.7946785,"speed":0},
-                                {"numSC":2,"ts":"1506606001354","lat":45.7735902,"lng":4.794523,"speed":0},
-                                {"numSC":2,"ts":"1506605980145","lat":45.7735691,"lng":4.794523,"speed":0},
-                                {"numSC":3,"ts":"1506605959961","lat":45.7735395,"lng":4.7937395,"speed":1},
-                                {"numSC":3,"ts":"1506605919889","lat":45.7735342,"lng":4.7927932,"speed":1},
-                                {"numSC":3,"ts":"1506605858837","lat":45.7735342,"lng":4.7918459,"speed":1},
-                                {"numSC":3,"ts":"1506605819277","lat":45.7729046,"lng":4.7914144,"speed":1},
-                                {"numSC":3,"ts":"1506605798743","lat":45.7729046,"lng":4.7888632,"speed":1},
-                                {"numSC":3,"ts":"1506605657546","lat":45.7736708,"lng":4.7836125,"speed":1},
-                                {"numSC":3,"ts":"1506605597452","lat":45.774277,"lng":4.7820606,"speed":1},
-                                {"numSC":3,"ts":"1506605577688","lat":45.7744612,"lng":4.7790971,"speed":1},
-                                {"numSC":3,"ts":"1506605557326","lat":45.7745171,"lng":4.7788653,"speed":1},
-                                {"numSC":3,"ts":"1506605517265","lat":45.7745525,"lng":4.7779587,"speed":1},
-                                {"numSC":3,"ts":"1506605497305","lat":45.7747091,"lng":4.7771127,"speed":1},
-                                {"numSC":3,"ts":"1506605477183","lat":45.7750692,"lng":4.7759369,"speed":1},
-                                {"numSC":3,"ts":"1506605457120","lat":45.7751145,"lng":4.775173,"speed":1},
-                                {"numSC":3,"ts":"1506605417098","lat":45.7765578,"lng":4.7736698,"speed":1},
-                                {"numSC":3,"ts":"1506605396923","lat":45.7775847,"lng":4.7698134,"speed":1},
-                                {"numSC":3,"ts":"1506605269548","lat":45.7829591,"lng":4.7663864,"speed":1},
-                                {"numSC":3,"ts":"1506605249541","lat":45.7835351,"lng":4.7663864,"speed":1},
-                                {"numSC":3,"ts":"1506605168468","lat":45.784125,"lng":4.7662879,"speed":1},
-                                {"numSC":3,"ts":"1506605146877","lat":45.7844199,"lng":4.7662879,"speed":1},
-                                {"numSC":3,"ts":"1506605045398","lat":45.7849988,"lng":4.7651705,"speed":1}]
-                    },
-                    { "segment_id" : 3, "points" :
-                            [{"numSC":0,"ts":"1506593727676","lat":45.7829918,"lng":4.7670493,"speed":0},
-                                {"numSC":0,"ts":"1506593708081","lat":45.7835686,"lng":4.7670315,"speed":0},
-                                {"numSC":0,"ts":"1506593687269","lat":45.7836426,"lng":4.7670315,"speed":0},
-                                {"numSC":0,"ts":"1506593567017","lat":45.7836619,"lng":4.7670493,"speed":0},
-                                {"numSC":0,"ts":"1506593467228","lat":45.7838727,"lng":4.767318,"speed":0},
-                                {"numSC":0,"ts":"1506593446648","lat":45.7838727,"lng":4.7675533,"speed":0},
-                                {"numSC":0,"ts":"1506593386523","lat":45.7838727,"lng":4.7676037,"speed":0},
-                                {"numSC":0,"ts":"1506593098894","lat":45.7829951,"lng":4.7676525,"speed":0},
-                                {"numSC":0,"ts":"1506593038747","lat":45.7829951,"lng":4.7676525,"speed":0},
-                                {"numSC":0,"ts":"1506593019014","lat":45.7829951,"lng":4.7676525,"speed":0},
-                                {"numSC":0,"ts":"1506592917596","lat":45.7834784,"lng":4.7670285,"speed":0},
-                                {"numSC":0,"ts":"1506592885112","lat":45.7835701,"lng":4.7670285,"speed":0},
-                                {"numSC":0,"ts":"1506592807436","lat":45.7835882,"lng":4.7670285,"speed":0},
-                                {"numSC":0,"ts":"1506592626938","lat":45.7835882,"lng":4.7670373,"speed":0},
-                                {"numSC":0,"ts":"1506592504641","lat":45.7835882,"lng":4.7671024,"speed":0},
-                                {"numSC":0,"ts":"1506592306090","lat":45.7835918,"lng":4.7671024,"speed":0},
-                                {"numSC":0,"ts":"1506592265917","lat":45.7835918,"lng":4.7670785,"speed":0},
-                                {"numSC":0,"ts":"1506592028938","lat":45.7835918,"lng":4.7671024,"speed":0},
-                                {"numSC":0,"ts":"1506591945481","lat":45.7835918,"lng":4.7670993,"speed":0},
-                                {"numSC":0,"ts":"1506591825151","lat":45.7835935,"lng":4.7670785,"speed":0},
-                                {"numSC":0,"ts":"1506591682743","lat":45.7835935,"lng":4.7670785,"speed":0},
-                                {"numSC":0,"ts":"1506591502591","lat":45.783604,"lng":4.7670847,"speed":0},
-                                {"numSC":0,"ts":"1506591362281","lat":45.783604,"lng":4.7670847,"speed":0},
-                                {"numSC":0,"ts":"1506590555826","lat":45.783604,"lng":4.7670816,"speed":0},
-                                {"numSC":0,"ts":"1506590317989","lat":45.7835595,"lng":4.7671093,"speed":0},
-                                {"numSC":0,"ts":"1506589991120","lat":45.7835856,"lng":4.7670816,"speed":0}]}],
-                "staypoints" :[{'lng': 4.829102304347825, 'addr': 'Unknown', 'lat': 45.74793377391304, 'end': '1506623162000', 'start': '1506635980080', 'label': 0},
-                    {'lng': 4.82742692, 'addr': 'Unknown', 'lat': 45.74879886, 'end': '1506622985107', 'start': '1506623079107', 'label': 1},
-                    {'lng': 4.826616379487179, 'addr': 'Unknown', 'lat': 45.7618741526923, 'end': '1506620347958', 'start': '1506622081142', 'label': 2},
-                    {'lng': 4.826616379487179, 'addr': 'Unknown', 'lat': 45.7618741526923, 'end': '1506606995723', 'start': '1506620347958', 'label': 2},
-                    {'lng': 4.764863666964286, 'addr': 'Unknown', 'lat': 45.78501842232144, 'end': '1506597619030', 'start': '1506605045398', 'label': 3},
-                    {'lng': 4.7681230999999995, 'addr': 'Unknown', 'lat': 45.78299907222222, 'end': '1506593727676', 'start': '1506597434291', 'label': 4}]}]
+        }
+        function drawDayData(dayData){
 
             nbSeg=dayData[0].segments.length;
             for (ii=0; ii<nbSeg; ii++){
@@ -668,37 +572,18 @@
             }
 
 
-
-            for( ii=0;ii<dayData[0].staypoints.length;ii++){
-                st=dayData[0].staypoints[ii];
-                console.log(geocodeLatLng(new google.maps.Geocoder,st.lat,st.lng));
-                marker = new google.maps.Marker({
-                    position: {lat: st.lat, lng: st.lng},
-                    title: 'Hello World!'});
-                aMarkers.push(marker)
-            }
-
-            addMarker();
+            //
+            // for( ii=0;ii<dayData[0].staypoints.length;ii++){
+            //     st=dayData[0].staypoints[ii];
+            //     marker = new google.maps.Marker({
+            //         position: {lat: st.lat, lng: st.lng},
+            //         title: 'Hello World!'});
+            //     aMarkers.push(marker)
+            // }
+            //
+            // addMarker();
             addLine();
 
-        }
-
-        function geocodeLatLng(geocoder,lat,lng) {
-            var latlng = {lat: lat, lng: lng};
-            geocoder.geocode({'location': latlng}, function (results, status) {
-                console.log('ici')
-                if (status === 'OK') {
-                    if (results[1]) {
-                        console.log(results[1].formatted_address)
-
-                        return (results[1].formatted_address);
-                    } else {
-                        return ('Adress not found')
-                    }
-                } else {
-                    return ('Adress not found')
-                }
-            });
         }
 
         function addMarker(){
