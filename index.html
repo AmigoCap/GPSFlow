@@ -376,7 +376,7 @@
 			update(min_year);
 		}
 
-		d3.json("d3/output.json", load_demo)
+		d3.json("d3/noutput.json", load_demo)
 
 		function load_demo(json_file) {
 			json = json_file;
@@ -547,7 +547,8 @@
             });
         }
         function drawDayData(dayData){
-
+			removeLine()
+			console.log(dayData)
             nbSeg=dayData[0].segments.length;
             for (ii=0; ii<nbSeg; ii++){
                 maxSC=Math.max.apply(Math,dayData[0].segments[ii].points.map(function(o){return o.numSC;}))
@@ -572,16 +573,16 @@
             }
 
 
-            //
-            // for( ii=0;ii<dayData[0].staypoints.length;ii++){
-            //     st=dayData[0].staypoints[ii];
-            //     marker = new google.maps.Marker({
-            //         position: {lat: st.lat, lng: st.lng},
-            //         title: 'Hello World!'});
-            //     aMarkers.push(marker)
-            // }
-            //
-            // addMarker();
+
+            for( ii=0;ii<dayData[0].staypoints.length;ii++){
+                st=dayData[0].staypoints[ii];
+                marker = new google.maps.Marker({
+                    position: {lat: st.lat, lng: st.lng},
+                    title: 'Hello World!'});
+                aMarkers.push(marker)
+            }
+
+            addMarker();
             addLine();
 
         }
@@ -601,8 +602,8 @@
             for(i=0;i<aPaths.length;i++) {
                 aPaths[i].setMap(null);
             }
-            marker.setMap(null)
-
+            // marker.setMap(null)
+			aPaths=[]
         }
 
 
