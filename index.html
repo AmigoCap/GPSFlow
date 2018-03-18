@@ -554,8 +554,11 @@
 			removeMarkers();
 
 
-
-			console.log(dayData)
+			map.setCenter({
+				lat: dayData[0].segments[0].points[0].lat,
+				lng: dayData[0].segments[0].points[0].lng
+			});
+			map.setZoom(12);
 
             nbSeg=dayData[0].segments.length;
             for (ii=0; ii<nbSeg; ii++){
