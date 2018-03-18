@@ -522,7 +522,8 @@
 				.on("click",function(d){
 				    dayData=json.days.filter(function (e) {return d==e.date})
 					if (dayData.length>0){
-                        drawDayData(dayData)
+                        drawDayData(dayData);
+                        drawDayRawData(dayData);
 					}
 				})
 				.datum(format);
@@ -539,7 +540,6 @@
 				rect.filter(function (e) { return e == d.date; })
 					.style("fill", d3.interpolatePuBu(scale(d.points_count)))
 					.select("title")
-					.text("hello");
 			})
 		}
 
@@ -568,7 +568,7 @@
                     path: dayData[0].segments[ii].points,
                     strokeColor: aColors[1],
                     strokeOpacity: 1.0,
-                    strokeWeight: 2
+                    strokeWeight: 3
                 });
                 aPaths.push(backGroundPath)
                 for(jj=0;jj<=maxSC;jj++){
@@ -579,7 +579,7 @@
                             path: dataToDraw ,
                             strokeColor: aColors[colorToPlot],
                             strokeOpacity: 1.0,
-                            strokeWeight: 2
+                            strokeWeight: 3
                         });
                         aPaths.push(path)
 					}
@@ -605,55 +605,16 @@
             addMarker();
             addLine();
 
+
         }
         function drawDayRawData(dayData){
-			// removeLine();
-			// removeMarkers();
 
-            nbSeg=dayData[0].segments.length;
-            for (ii=0; ii<nbSeg; ii++){
-                maxSC=Math.max.apply(Math,dayData[0].segments[ii].points.map(function(o){return o.numSC;}))
-                backGroundPath = new google.maps.Polyline({
-                    path: dayData[0].segments[ii].points,
-                    strokeColor: aColors[1],
+                rawPath = new google.maps.Polyline({
+                    path: dayData[0].raw_day,
+                    strokeColor: '#6d3d10',
                     strokeOpacity: 1.0,
-                    strokeWeight: 2
+                    strokeWeight: 1
                 });
-                aPaths.push(backGroundPath)
-                for(jj=0;jj<=maxSC;jj++){
-                    dataToDraw=dayData[0].segments[ii].points.filter(function(o){return o.numSC==jj});
-                    if (dataToDraw.length>0){
-                        colorToPlot=dataToDraw[0].speed;
-                        path = new google.maps.Polyline({
-                            path: dataToDraw ,
-                            strokeColor: aColors[colorToPlot],
-                            strokeOpacity: 1.0,
-                            strokeWeight: 2
-                        });
-                        aPaths.push(path)
-					}
-
-                }
-            }
-
-
-
-            for( ii=0;ii<dayData[0].staypoints.length;ii++){
-                st=dayData[0].staypoints[ii];
-                start=new Date(st.start);
-                end=new Date(st.end);
-                marker = new google.maps.Marker({
-                    position: {lat: st.lat, lng: st.lng},
-                    title:
-					'From : ' + start.getHours() +':'+start.getMinutes() + '\n ' +
-						'To : ' +end.getHours() +':'+end.getMinutes()
-                });
-                aMarkers.push(marker)
-            }
-
-            addMarker();
-            addLine();
-
         }
 
         function addMarker(){
@@ -679,8 +640,12 @@
                 aMarkers[i].setMap(null);
             }
             aMarkers=[]
-
-
+		}
+		function removeRawPath(){
+		    rawPath.setMap(null);
+		}
+		function addRawPath(){
+		    rawPath.setMap(map)
 		}
 
 
