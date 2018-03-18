@@ -547,8 +547,13 @@
             });
         }
         function drawDayData(dayData){
-			removeLine()
+			removeLine();
+			removeMarkers();
+
+
+
 			console.log(dayData)
+
             nbSeg=dayData[0].segments.length;
             for (ii=0; ii<nbSeg; ii++){
                 maxSC=Math.max.apply(Math,dayData[0].segments[ii].points.map(function(o){return o.numSC;}))
@@ -561,14 +566,17 @@
                 aPaths.push(backGroundPath)
                 for(jj=0;jj<=maxSC;jj++){
                     dataToDraw=dayData[0].segments[ii].points.filter(function(o){return o.numSC==jj});
-                    colorToPlot=dataToDraw[0].speed;
-                    path = new google.maps.Polyline({
-                        path: dataToDraw ,
-                        strokeColor: aColors[colorToPlot],
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2
-                    });
-                    aPaths.push(path)
+                    if (dataToDraw.length>0){
+                        colorToPlot=dataToDraw[0].speed;
+                        path = new google.maps.Polyline({
+                            path: dataToDraw ,
+                            strokeColor: aColors[colorToPlot],
+                            strokeOpacity: 1.0,
+                            strokeWeight: 2
+                        });
+                        aPaths.push(path)
+					}
+
                 }
             }
 
@@ -602,9 +610,17 @@
             for(i=0;i<aPaths.length;i++) {
                 aPaths[i].setMap(null);
             }
-            // marker.setMap(null)
 			aPaths=[]
         }
+
+        function removeMarkers(){
+            for(i=0;i<aMarkers.length;i++) {
+                aMarkers[i].setMap(null);
+            }
+            aMarkers=[]
+
+
+		}
 
 
 	</script>
