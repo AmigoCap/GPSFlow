@@ -519,7 +519,10 @@
 						.style("opacity", 0);
 				})
 				.on("click",function(d){
-					drawDayData(json.days.filter(function (e) {return d==e.date}))
+				    dayData=json.days.filter(function (e) {return d==e.date})
+					if (dayData.length>0){
+                        drawDayData(dayData)
+					}
 				})
 				.datum(format);
 
