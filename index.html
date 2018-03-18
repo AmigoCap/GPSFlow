@@ -589,13 +589,14 @@
 
 
             for( ii=0;ii<dayData[0].staypoints.length;ii++){
-                console.log(dayData[0].staypoints[0])
                 st=dayData[0].staypoints[ii];
+                start=new Date(st.start);
+                end=new Date(st.end);
                 marker = new google.maps.Marker({
                     position: {lat: st.lat, lng: st.lng},
                     title:
-					'Arrival :' + st.start.toString() + '\n ' +
-						'Departure :' + st.end.toString()
+					'From : ' + end.getHours() +':'+end.getMinutes() + '\n ' +
+						'To : ' +start.getHours() +':'+start.getMinutes()
                 });
                 aMarkers.push(marker)
             }
