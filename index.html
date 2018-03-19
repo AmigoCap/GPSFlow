@@ -35,6 +35,12 @@
 			font-family: Arial, Helvetica;
 		}
 
+		.day-name {
+			font-size: 100%;
+			fill: #777;
+			font-family: Arial, Helvetica;
+		}
+
 		.arrow {
 			cursor: pointer;
 		}
@@ -49,7 +55,7 @@
 		}
 
 		.day.focus {
-			stroke: #ffff33;
+			stroke: #FF0000;
 			stroke-width: 2;
 		}
 
@@ -456,6 +462,13 @@
 					}
 				})
 
+			day_display = svg.append("text")
+				.attr('x', width * 2)
+				.attr('y', h1/2 + height*2 )
+				.attr("text-anchor", "middle")
+				.attr("class", "day-name")
+				.text("")
+
 		}
 
 		function drawCalendar(year) {
@@ -532,6 +545,9 @@
                         drawDayData(dayData);
                         drawDayRawData(dayData);
 					}
+					d3.selectAll(".day").classed('focus', false);
+					d3.select(this).classed('focus', true);
+					day_display.text(d)
 				})
 				.datum(format);
 
@@ -546,7 +562,6 @@
 			json.days.forEach(function (d) {
 				rect.filter(function (e) { return e == d.date; })
 					.style("fill", d3.interpolatePuBu(scale(d.points_count)))
-					.select("title")
 			})
 		}
 
