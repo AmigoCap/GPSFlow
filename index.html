@@ -257,7 +257,17 @@
 <body>
 	<nav id="primary_nav_wrap">
 	<ul>
-		<li class="current-menu-item"><a href="#">Home</a></li>
+		<li class="title">GPS Flow</li>
+		<li class="nav-item" style="float:right">
+			<button type="button" class="custom-about" id="myBtn">
+				About
+			</button>
+		</li>
+		<li style="float:right">
+			<input id="file" type="file" name="file" class="inputfile" onchange="read(this.files)">
+			<label for="file" class="custom-file-upload">Use your own file</label>
+		</li>
+		<li class="current-menu-item "><a href="#">Home</a></li>
 		<li><a href="#">Menu 1</a>
 			<ul>
 				<li><a href="#">Sub Menu 1</a></li>
