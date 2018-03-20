@@ -373,7 +373,7 @@
 
         var map;
         var aPaths=[];
-        var rawPath;
+        var rawPath=null;
         var aColors=['#228B22','#FFA500','#FF0000'];
         var aMarkers=[];
 		var rawShown=false;
@@ -630,14 +630,14 @@
 
         }
         function drawDayRawData(dayData){
-
+		    if(rawPath){removeRawPath()}
                 rawPath = new google.maps.Polyline({
                     path: dayData[0].raw_day,
                     strokeColor: '#6d3d10',
                     strokeOpacity: 1.0,
                     strokeWeight: 1
                 });
-        }
+            }
 
         function addMarker(){
             for(i=0;i<aMarkers.length;i++) {
@@ -665,7 +665,6 @@
 			else{
 		        removeRawPath()
 			}
-			rawShown=!rawShown;
         }
 
         function removeMarkers(){
@@ -676,9 +675,12 @@
 		}
 		function removeRawPath(){
 		    rawPath.setMap(null);
+		    rawShown=false;
+
 		}
 		function addRawPath(){
 		    rawPath.setMap(map)
+            rawShown=true;
 		}
 
 
