@@ -269,7 +269,11 @@
 	<ul>
 		<li class="title">GPS Flow</li>
 		<li class="current-menu-item " style="float:right" id="myBtn"><a href="#">About</a></li>
-		<li class="current-menu-item " style="float:right"><a href="#">Use your own file</a></li>
+		<li class="current-menu-item " style="float:right">gi
+            <input id="file" type="file" name="file" class="inputfile" onchange="read(this.files)">
+            <label for="file" class="custom-file-upload">Use your own file</label>
+
+        </li>
 		<li class="current-menu-item " style="float:right"><a href="#">R&D</a>
 			<ul>
 				<li><a href="#">Sub Menu 1</a></li>
@@ -277,14 +281,7 @@
 				<li><a href="#">Sub Menu 3</a></li>
 				<li><a href="#">Sub Menu 4</a>
 					<ul>
-						<li><a href="#">Deep Menu 1</a>
-							<ul>
-								<li><a href="#">Sub Deep 1</a></li>
-								<li><a href="#">Sub Deep 2</a></li>
-								<li><a href="#">Sub Deep 3</a></li>
-								<li><a href="#">Sub Deep 4</a></li>
-							</ul>
-						</li>
+						<li><a href="#">Deep Menu 1</a></li>
 						<li><a href="#">Deep Menu 2</a></li>
 					</ul>
 				</li>
