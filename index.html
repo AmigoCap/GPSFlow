@@ -177,15 +177,14 @@
 	<style>
 		#primary_nav_wrap
 		{
-			margin-top:15px
-            background-color: blue;
+			background-color: darkblue;
+            height: 60px;
 		}
 
 		#primary_nav_wrap ul
 		{
 			list-style:none;
 			position:relative;
-			float:left;
 			margin:0;
 			padding:0
 		}
@@ -205,7 +204,6 @@
 		#primary_nav_wrap ul li
 		{
 			position:relative;
-			float:left;
 			margin:0;
 			padding:0
 		}
@@ -256,7 +254,6 @@
 		{
 			top:0;
 			left:100%
-
 		}
 
 		#primary_nav_wrap ul li:hover > ul
@@ -269,8 +266,8 @@
 <body>
 	<nav id="primary_nav_wrap">
 	<ul>
-		<li class="title">GPS Flow</li>
-		<li class="current-menu-item " style="float:right" id="myBtn"><a href="#">About</a></li>
+		<li class="title" style="float: left ">GPS Flow</li>
+		<li class="current-menu-item " style="float:right;" id="myBtn"><a href="#">About</a></li>
 		<li class="current-menu-item " style="float:right">
             <input id="file" type="file" name="file" class="inputfile" onchange="read(this.files)">
             <label for="file" class="custom-file-upload">Use your own file</label>
@@ -289,18 +286,6 @@
 	</ul>
 </nav>
 	<div>
-		<ul>
-			<li class="title">GPS Flow</li>
-			<!--<li class="nav-item" style="float:right">-->
-				<!--<button type="button" class="custom-about" id="myBtn">-->
-					<!--About-->
-				<!--</button>-->
-			<!--</li>-->
-			<li style="float:right">
-				<input id="file" type="file" name="file" class="inputfile" onchange="read(this.files)">
-				<label for="file" class="custom-file-upload">Use your own file</label>
-			</li>
-		</ul>
 		<div id="heat_map" style="display: inline-block; vertical-align:top;"></div>
 		<div id="wrapper">
 		<div id="google_maps" style="display: inline-block; vertical-align:top; "></div>
