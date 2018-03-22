@@ -211,7 +211,17 @@
 
 		#primary_nav_wrap ul li.current-menu-item
 		{
-			background:#ddd
+			border-radius: 5px;
+			border: none;
+			fill: #076AA4;
+			background-color: #076AA4;
+			font: 14px sans-serif;
+			font-weight: bold;
+			color: white;
+			display: inline-block;
+			padding: 8px 12px;
+			margin-right: 10px;
+			cursor: pointer;
 		}
 
 		#primary_nav_wrap ul li:hover
@@ -258,17 +268,9 @@
 	<nav id="primary_nav_wrap">
 	<ul>
 		<li class="title">GPS Flow</li>
-		<li class="nav-item" style="float:right">
-			<button type="button" class="custom-about" id="myBtn">
-				About
-			</button>
-		</li>
-		<li style="float:right">
-			<input id="file" type="file" name="file" class="inputfile" onchange="read(this.files)">
-			<label for="file" class="custom-file-upload">Use your own file</label>
-		</li>
-		<li class="current-menu-item "><a href="#">Home</a></li>
-		<li><a href="#">Menu 1</a>
+		<li class="current-menu-item " style="float:right"><a href="#">About</a></li>
+		<li class="current-menu-item " style="float:right"><a href="#">Use your own file</a></li>
+		<li class="current-menu-item " style="float:right"><a href="#">R&D</a>
 			<ul>
 				<li><a href="#">Sub Menu 1</a></li>
 				<li><a href="#">Sub Menu 2</a></li>
@@ -289,34 +291,7 @@
 				<li><a href="#">Sub Menu 5</a></li>
 			</ul>
 		</li>
-		<li><a href="#">Menu 2</a>
-			<ul>
-				<li><a href="#">Sub Menu 1</a></li>
-				<li><a href="#">Sub Menu 2</a></li>
-				<li><a href="#">Sub Menu 3</a></li>
-			</ul>
-		</li>
-		<li><a href="#">Menu 3</a>
-			<ul>
-				<li class="dir"><a href="#">Sub Menu 1</a></li>
-				<li class="dir"><a href="#">Sub Menu 2 THIS IS SO LONG IT MIGHT CAUSE AN ISSEUE BUT MAYBE NOT?</a>
-					<ul>
-						<li><a href="#">Category 1</a></li>
-						<li><a href="#">Category 2</a></li>
-						<li><a href="#">Category 3</a></li>
-						<li><a href="#">Category 4</a></li>
-						<li><a href="#">Category 5</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Sub Menu 3</a></li>
-				<li><a href="#">Sub Menu 4</a></li>
-				<li><a href="#">Sub Menu 5</a></li>
-			</ul>
-		</li>
-		<li><a href="#">Menu 4</a></li>
-		<li><a href="#">Menu 5</a></li>
-		<li><a href="#">Menu 6</a></li>
-		<li><a href="#">Contact Us</a></li>
+
 	</ul>
 </nav>
 	<div>
