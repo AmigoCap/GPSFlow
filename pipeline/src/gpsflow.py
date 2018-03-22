@@ -11,23 +11,23 @@ if __name__ == "__main__" :
 		filepath = str(sys.argv[1])
 
 		if os.path.isfile(filepath) and filepath.endswith('.json'):
-			print("Import Google Takout data... (can take a long time)")
+			print("Import Google Takout data (can be long)... ", end='')
 			df = parser.importJson(filepath)	
-			print("Done !\n")
+			print("Done !")
 
-			print("Process trajectories...")
+			print("Process trajectories... ", end='')
 			data = pipeline.process(df)
-			print("Done !\n")
+			print("Done !")
 
-			print("Export to json...")
+			print("Export to json... ", end='')
 			json = exporter.generateJson(data)
-			print("Done !\n")
+			print("Done !")
 
-			print("Write to file...")
+			print("Write to file... ", end='')
 			file = open("output.json", "w") 
 			file.write(json)
 			file.close()
-			print("Done !\n")
+			print("Done !")
 
 		elif not filepath.endswith('.json') :
 			print("File must be in JSON format.")

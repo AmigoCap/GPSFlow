@@ -8,11 +8,13 @@ def process(df) :
 	result = []
 
 	for day in days :
-		segments, points = processDay(day, df)
+		raw_day = process_raw_day(day, df)
+		segments, points = process_day(day, df)
 		result.append({
 				"date" : day,
 				"segments" : segments,
-				"points" : points
+				"points" : points,
+				"raw_day" : raw_day
 			})
 
 	return result
@@ -22,7 +24,7 @@ def getUniqueDays(df) :
 	seen = set()
 	return [x for x in sequence if not (x in seen or seen.add(x))]
 
-def processDay(day, df) :
+def process_day(day, df) :
 	min_angle=15
 	max_speed=150
 	median_window=2
@@ -74,3 +76,15 @@ def cleanupColumns(segments) :
 				del s[col]
 				
 	return segments
+
+def process_raw_day(day, df) :
+	raw_day = parser.selectDate(day, df)
+	raw_day['lat'] = raw_day['latitude']
+	raw_day['lng'] = raw_day['longitude']
+
+	columns = ["lat", "lng"]
+	for col in list(raw_day) :
+		if col not in columns :
+			del raw_day[col]
+	
+	return raw_day

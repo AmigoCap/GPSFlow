@@ -4,13 +4,13 @@ def generateJson(data) :
 	result = "{\"days\":["
 	
 	for d in data :
-		result += createDayJson(d["date"], d["segments"], d["points"])
+		result += createDayJson(d["date"], d["segments"], d["points"], d["raw_day"])
 		result += ","
 
 	result = result[:-1] + "]}"
 	return result
 
-def createDayJson(date, segments, points) :
+def createDayJson(date, segments, points, raw_day) :
 
 	result = "{"
 
@@ -33,6 +33,11 @@ def createDayJson(date, segments, points) :
 	# Stay points
 	result += "\"staypoints\":"
 	result += json.dumps(points)
+	result += ","
+
+	result += "\"raw_day\":"
+	result += raw_day.to_json(path_or_buf=None, orient='records')
+
 	result += "}"
 	
 	return result
