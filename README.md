@@ -26,7 +26,7 @@ git clone https://github.com/AmigoCap/GPSFlow
 
 7. Once the programm is finished, if everything went well, you should have a file called `output.json` inside the `dist/` folder.
 
-8. Use the vizualisation tool to display the output in your navigator.
+8. Use the [vizualisation](https://amigocap.github.io/GPSFlow/) tool to display the output in your navigator.
 
 ## How to recompile gpsflow from source
 
