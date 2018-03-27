@@ -48,7 +48,9 @@ The navigation bar allows you to navigate throw the years by clicking on the arr
 
 The day selected will be circled in red, and the date of the data displayed on the left (here it was the 26-06-2017)	
 
-## How to execute gpsflow
+## Process your data 
+
+### How to execute gpsflow
 
 1. Download the project and unzip it.
 
@@ -72,7 +74,7 @@ The day selected will be circled in red, and the date of the data displayed on t
 
 8. Use the [visualization](https://amigocap.github.io/GPSFlow/) tool to display the output in your navigator.
 
-## How to recompile gpsflow from source
+### How to recompile gpsflow from source
 
 1. Install pyinstaller
 
@@ -92,7 +94,7 @@ pyinstaller --onefile --additional-hooks-dir=hooks ../src/gpsflow.py
 
 5. Once finished, the compiled executable is `gpsflow` inside the `dist/` folder
 
-## How to run gpsflow using python
+### How to run gpsflow using python
 
 1. Download the project and unzip it.
 
