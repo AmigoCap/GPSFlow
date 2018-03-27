@@ -46,7 +46,7 @@ If you are interested on the process of the data, you can see our work and algor
 
 The navigation bar allows you to navigate throw the years by clicking on the arrows. To display one day on the map, simply click on the heat map. The heat map represents the number of GPS data per day, so in general the most interested days are the ones in dark blue.
 
-The day selected will be circled in red, and the data displayed on the left (here it was the 26-06-2017)	
+The day selected will be circled in red, and the date of the data displayed on the left (here it was the 26-06-2017)	
 
 ## How to execute gpsflow
 
