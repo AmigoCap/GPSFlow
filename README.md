@@ -94,11 +94,7 @@ pyinstaller --onefile --additional-hooks-dir=hooks ../src/gpsflow.py
 
 ## How to run gpsflow using python
 
-1. Download the project
-
-```
-git clone https://github.com/AmigoCap/GPSFlow
-```
+1. Download the project and unzip it.
 
 2. Install all modules listed in `pipeline/requirements.txt`
 
