@@ -4,6 +4,12 @@ This project allows you to download, process and visualize your GPS data from yo
 
 If you do not wish to download your data, or if you do not have any, you can still go to the [visualization](https://amigocap.github.io/GPSFlow/), there is some test data. You can see the treatment that has been done to the data by clicking on "raw data".
 
+Authors : <a href="https://github.com/MathReynaud"> Mathilde Reynaud </a> |
+				<a href="https://github.com/thalkz"> Roland Lamidieu</a> |
+				<a href="https://github.com/alexandrospopov"> Alexandre Popov </a> |
+				<a href="https://github.com/FrancoisPgm"> François Paugam </a> |
+				<a href="https://github.com/Skan0394"> Skander Malouche </a>
+
 ## How to execute gpsflow
 
 1. Download the project
