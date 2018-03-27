@@ -32,7 +32,18 @@ If you do not wish to download your data, or if you do not have any, you can sti
 
 This visualization allows you to download your own data, but first you need to process it (see below). Once it is done, juste click on "Use your own file". 
 If you are interested on the process of the data, you can see our work and algorithms explained in details in "R&D".
-		
+
+### Navigate
+
+<table border="0">
+  <tr>
+    <td>
+      <img src="Images/3-GPS.png" height= "250">
+    </td>
+  </tr>
+</table>
+
+The navigation bar allows you to navigate throw the years by clicking on the arrows. To display one day on the map, simply click on the heatmap. The day selected will be circled in red, and the data displayed on the left (here it was the 26-06-2017)	
 
 ## How to execute gpsflow
 
