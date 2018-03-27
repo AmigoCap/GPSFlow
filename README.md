@@ -20,6 +20,8 @@ If you do not wish to download your data, or if you do not have any, you can sti
 
 ## Visualization
 
+### Use your data
+
 <table border="0">
   <tr>
     <td>
@@ -29,7 +31,7 @@ If you do not wish to download your data, or if you do not have any, you can sti
 </table>
 
 This visualization allows you to download your own data, but first you need to process it (see below). Once it is done, juste click on "Use your own file". 
-If you are interested on the process of the data, you can see our word and algorithms explained in details in "R&D".
+If you are interested on the process of the data, you can see our work and algorithms explained in details in "R&D".
 		
 
 ## How to execute gpsflow
