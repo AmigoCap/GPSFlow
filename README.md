@@ -10,8 +10,6 @@ Authors : <a href="https://github.com/MathReynaud"> Mathilde Reynaud </a> |
 
 If you do not wish to download your data, or if you do not have any, you can still go to the [visualization](https://amigocap.github.io/GPSFlow/), there is some test data. You can see the treatment that has been done to the data by clicking on "raw data".
 
-## Visualization
-
 <table border="0">
   <tr>
     <td>
@@ -19,6 +17,19 @@ If you do not wish to download your data, or if you do not have any, you can sti
     </td>
   </tr>
 </table>
+
+## Visualization
+
+<table border="0">
+  <tr>
+    <td>
+      <img src="Images/2-GPS.png" height= "150">
+    </td>
+  </tr>
+</table>
+
+This visualization allows you to download your own data, but first you need to process it (see below). Once it is done, juste click on "Use your own file". 
+If you are interested on the process of the data, you can see our word and algorithms explained in details in "R&D".
 		
 
 ## How to execute gpsflow
