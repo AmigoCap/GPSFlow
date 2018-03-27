@@ -38,7 +38,7 @@ If you are interested on the process of the data, you can see our work and algor
 <table border="0">
   <tr>
     <td>
-      <img src="Images/3-GPS.png" height= "250">
+      <img src="Images/3-GPS.png" style="width: 100px;">
     </td>
   </tr>
 </table>
