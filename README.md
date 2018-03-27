@@ -50,11 +50,7 @@ The day selected will be circled in red, and the date of the data displayed on t
 
 ## How to execute gpsflow
 
-1. Download the project
-
-```
-git clone https://github.com/AmigoCap/GPSFlow
-```
+1. Download the project and unzip it.
 
 2. Download your Google Takout Location History [here](https://takeout.google.com/settings/takeout)
 
