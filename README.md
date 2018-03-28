@@ -1,12 +1,58 @@
 # GPSFlow
 
-## How to execute gpsflow
+This project allows you to download, process and visualize your GPS data from your Google Location History.
 
-1. Download the project
+Authors : <a href="https://github.com/MathReynaud"> Mathilde Reynaud </a> |
+				<a href="https://github.com/thalkz"> Roland Lamidieu</a> |
+				<a href="https://github.com/alexandrospopov"> Alexandre Popov </a> |
+				<a href="https://github.com/FrancoisPgm"> François Paugam </a> |
+				<a href="https://github.com/Skan0394"> Skander Malouche </a>
 
-```
-git clone https://github.com/AmigoCap/GPSFlow
-```
+If you do not wish to download your data, or if you do not have any, you can still go to the [visualization](https://amigocap.github.io/GPSFlow/), there is some test data. You can see the treatment that has been done to the data by clicking on "raw data".
+
+<table border="0">
+  <tr>
+    <td>
+      <img src="Images/1-GPS.png" style="width: 100px;">
+    </td>
+  </tr>
+</table>
+
+## Visualization
+
+### Use your data
+
+<table border="0">
+  <tr>
+    <td>
+      <img src="Images/2-GPS.png" height= "150">
+    </td>
+  </tr>
+</table>
+
+This visualization allows you to download your own data, but first you need to process it (see below). Once it is done, just click on "Use your own file". 
+
+If you are interested on the process of the data, you can see our work and algorithms explained in details in "R&D".
+
+### Navigate
+
+<table border="0">
+  <tr>
+    <td>
+      <img src="Images/3-GPS.png" style="width: 100px;">
+    </td>
+  </tr>
+</table>
+
+The navigation bar allows you to navigate throw the years by clicking on the arrows. To display one day on the map, simply click on the heat map. The heat map represents the number of GPS data per day, so in general the most interested days are the ones in dark blue.
+
+The day selected will be circled in red, and the date of the data displayed on the left (here it was the 26-06-2017)	
+
+## Process your data 
+
+### How to execute gpsflow
+
+1. Download the project and unzip it.
 
 2. Download your Google Takout Location History [here](https://takeout.google.com/settings/takeout)
 
@@ -26,9 +72,9 @@ git clone https://github.com/AmigoCap/GPSFlow
 
 7. Once the programm is finished, if everything went well, you should have a file called `output.json` inside the `dist/` folder.
 
-8. Use the vizualisation tool to display the output in your navigator.
+8. Use the [visualization](https://amigocap.github.io/GPSFlow/) tool to display the output in your navigator.
 
-## How to recompile gpsflow from source
+### How to recompile gpsflow from source
 
 1. Install pyinstaller
 
@@ -48,13 +94,9 @@ pyinstaller --onefile --additional-hooks-dir=hooks ../src/gpsflow.py
 
 5. Once finished, the compiled executable is `gpsflow` inside the `dist/` folder
 
-## How to run gpsflow using python
+### How to run gpsflow using python
 
-1. Download the project
-
-```
-git clone https://github.com/AmigoCap/GPSFlow
-```
+1. Download the project and unzip it.
 
 2. Install all modules listed in `pipeline/requirements.txt`
 
@@ -76,4 +118,4 @@ python main.py takout.json
 
 7. Once the programm is finished, if everything went well, you should have a file called `output.json` inside the `src/` folder.
 
-8. Use the vizualisation tool to display the output in your navigator.
+8. Use the [visualization](https://amigocap.github.io/GPSFlow/) tool to display the output in your navigator.

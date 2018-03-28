@@ -59,17 +59,17 @@
 			stroke-width: 2;
 		}
 
-		ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 8px;
-			overflow: hidden;
-			background-color: #023858;
-		}
+		/*ul {*/
+			/*list-style-type: none;*/
+			/*margin: 0;*/
+			/*padding: 8px;*/
+			/*overflow: hidden;*/
+			/*background-color: #023858;*/
+		/*}*/
 
-		li {
-			float: left;
-		}
+		/*li {*/
+			/*float: left;*/
+		/*}*/
 
 		.active {
 			background-color: #4CAF50;
@@ -79,15 +79,18 @@
 			border-radius: 5px;
 			border: none;
 			fill: #076AA4;
-			background-color: #076AA4;
+			background-color: #87b2ec;
 			font: 14px sans-serif;
 			font-weight: bold;
-			color: white;
+			color: black;
 			display: inline-block;
-			padding: 8px 12px;
-			margin-right: 10px;
+			padding: 16px 24px;
 			cursor: pointer;
 		}
+
+        .custom-file-upload:hover {
+            background-color: #f6f6f6;
+        }
 
 		input[type="file"] {
 			display: none;
@@ -174,22 +177,138 @@
 		#over_map { position: absolute; top: 20px; left: 140px; z-index: 99; }
 
 	</style>
+	<style>
+		#primary_nav_wrap
+		{
+			background-color: #023858;
+            height: 60px;
+		}
+
+		#primary_nav_wrap ul
+		{
+			list-style:none;
+			position:relative;
+			margin:0;
+			padding:0
+		}
+
+		#primary_nav_wrap ul a
+		{
+			display:block;
+			color:#333;
+			text-decoration:none;
+			font-weight:700;
+			font-size:14px;
+			line-height:32px;
+			padding:0 15px;
+			font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+            font-weight: bold;
+
+        }
+
+		#primary_nav_wrap ul li
+		{
+			position:relative;
+			margin:0;
+			padding:0
+		}
+
+		#primary_nav_wrap ul li.current-menu-item
+		{
+            margin-top: 5px;
+			border-radius: 5px;
+			border: none;
+			fill: #076AA4;
+			background-color: #87b2ec;
+			font: 16px sans-serif;
+			font-weight: bold;
+			color: white;
+			display: inline-block;
+			padding: 8px 12px;
+			margin-right: 10px;
+			cursor: pointer;
+		}
+
+        #primary_nav_wrap ul li.current-menu-item2
+        {
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+            fill: #076AA4;
+            background-color: #87b2ec;
+            font: 16px sans-serif;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+
+        #primary_nav_wrap ul li:hover
+		{
+			background:#f6f6f6
+		}
+
+		#primary_nav_wrap ul ul
+		{
+			display:none;
+			position:absolute;
+			top:100%;
+			left:0;
+			background:#fff;
+			padding:0
+		}
+
+		#primary_nav_wrap ul ul li
+		{
+			float:none;
+			width:200px
+		}
+
+		#primary_nav_wrap ul ul a
+		{
+			line-height:120%;
+			padding:10px 15px
+		}
+
+		#primary_nav_wrap ul ul ul
+		{
+			top:0;
+			left:100%
+		}
+
+		#primary_nav_wrap ul li:hover > ul
+		{
+			display:block
+		}
+	</style>
 </head>
 
 <body>
+	<nav id="primary_nav_wrap">
+	<ul>
+		<li class="title" style="float: left ">GPS Flow</li>
+		<li class="current-menu-item " style="float:right;" id="myBtn"><a href="#">About</a></li>
+		<li class="current-menu-item2" style="float:right">
+            <input id="file" type="file" name="file" class="inputfile" onchange="read(this.files)">
+            <label for="file" class="custom-file-upload">Use your own file</label>
+
+        </li>
+		<li class="current-menu-item " style="float:right"><a href="#">R&D</a>
+			<ul>
+				<li><a target="_blank" href="d3/1-Display.html">1 : Display</a></li>
+				<li><a target="_blank" href="d3/2-Preprocessing.html">2 : Preprocessing</a></li>
+				<li><a target="_blank" href="d3/3-Segmentation.html">3 : Segmentation</a></li>
+				<li><a target="_blank" href="d3/4-StayPoint.html">4 : StayPoint</a></li>
+				<li><a target="_blank" href="d3/5-GlobalStat.html">5 : GlobalStat</a></li>
+				<li><a target="_blank" href="d3/6-Pipeline.html">6 :  Pipeline</a></li>
+			</ul>
+		</li>
+
+	</ul>
+</nav>
 	<div>
-		<ul>
-			<li class="title">GPS Flow</li>
-			<li class="nav-item" style="float:right">
-				<button type="button" class="custom-about" id="myBtn">
-					About
-				</button>
-			</li>
-			<li style="float:right">
-				<input id="file" type="file" name="file" class="inputfile" onchange="read(this.files)">
-				<label for="file" class="custom-file-upload">Use your own file</label>
-			</li>
-		</ul>
 		<div id="heat_map" style="display: inline-block; vertical-align:top;"></div>
 		<div id="wrapper">
 		<div id="google_maps" style="display: inline-block; vertical-align:top; "></div>
