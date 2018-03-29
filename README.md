@@ -8,7 +8,7 @@ Authors : <a href="https://github.com/MathReynaud"> Mathilde Reynaud </a> |
 				<a href="https://github.com/FrancoisPgm"> François Paugam </a> |
 				<a href="https://github.com/Skan0394"> Skander Malouche </a>
 
-Link to our last [presentation](https://docs.google.com/presentation/d/1zvHQq8kjXjt0T3zA44Hu5vlXIpBVPcoPWicb8FfBT48/edit#slide=id.p4) (in French).
+Link to our last [presentation](https://docs.google.com/presentation/d/1zvHQq8kjXjt0T3zA44Hu5vlXIpBVPcoPWicb8FfBT48/edit?usp=sharing) (in French).
 
 If you do not wish to download your data, or if you do not have any, you can still go to the [visualization](https://amigocap.github.io/GPSFlow/), there is some test data. You can see the treatment that has been done to the data by clicking on "raw data".
 
