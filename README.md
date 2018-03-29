@@ -7,6 +7,7 @@ Authors : <a href="https://github.com/MathReynaud"> Mathilde Reynaud </a> |
 				<a href="https://github.com/alexandrospopov"> Alexandre Popov </a> |
 				<a href="https://github.com/FrancoisPgm"> François Paugam </a> |
 				<a href="https://github.com/Skan0394"> Skander Malouche </a>
+Tuteur : <a href="https://github.com/romsson"> Romain Vuillemot </a>
 
 Link to our last [presentation](https://docs.google.com/presentation/d/1zvHQq8kjXjt0T3zA44Hu5vlXIpBVPcoPWicb8FfBT48/edit?usp=sharing) (in French).
 
